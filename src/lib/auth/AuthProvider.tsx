@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { User, Session } from "@supabase/supabase-js";
 import { createClient } from "@/lib/supabase/client";
 
@@ -11,6 +11,7 @@ interface AuthContextType {
   user: User | null;
   session: Session | null;
   loading: boolean;
+  remainingSeconds: number | null;
   signOut: () => Promise<void>;
 }
 
@@ -18,6 +19,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   session: null,
   loading: true,
+  remainingSeconds: null,
   signOut: async () => {},
 });
 
@@ -29,23 +31,47 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   const [user, setUser] = useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+  const [remainingSeconds, setRemainingSeconds] = useState<number | null>(null);
+  const deadlineRef = useRef<number>(0);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     const supabase = createClient();
     if (supabase) {
       await supabase.auth.signOut();
     }
     sessionStorage.removeItem(SESSION_FLAG);
-  };
+    setRemainingSeconds(null);
+  }, []);
 
-  // 비활동 타이머 리셋
-  const resetTimer = () => {
+  const startCountdown = useCallback(() => {
+    // 만료 시각 설정
+    deadlineRef.current = Date.now() + SESSION_TIMEOUT_MS;
+
+    // 자동 로그아웃 타이머
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       signOut();
     }, SESSION_TIMEOUT_MS);
-  };
+
+    // 1초마다 남은 시간 업데이트
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    setRemainingSeconds(Math.ceil(SESSION_TIMEOUT_MS / 1000));
+    intervalRef.current = setInterval(() => {
+      const left = Math.max(0, Math.ceil((deadlineRef.current - Date.now()) / 1000));
+      setRemainingSeconds(left);
+      if (left <= 0 && intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    }, 1000);
+  }, [signOut]);
+
+  const stopCountdown = useCallback(() => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    setRemainingSeconds(null);
+  }, []);
 
   useEffect(() => {
     const supabase = createClient();
@@ -58,7 +84,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     const params = new URLSearchParams(window.location.search);
     if (params.get("_auth") === "1") {
       sessionStorage.setItem(SESSION_FLAG, "true");
-      // URL에서 _auth 파라미터 제거 (깔끔한 URL 유지)
       params.delete("_auth");
       const cleanUrl = params.toString()
         ? `${window.location.pathname}?${params.toString()}`
@@ -70,7 +95,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
     supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
       if (currentSession && !wasActive) {
-        // 새 탭/브라우저인데 이전 세션이 남아있으면 로그아웃
         supabase.auth.signOut();
         setSession(null);
         setUser(null);
@@ -83,7 +107,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       setLoading(false);
 
       if (currentSession) {
-        resetTimer();
+        startCountdown();
       }
     });
 
@@ -96,17 +120,17 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
       if (newSession) {
         sessionStorage.setItem(SESSION_FLAG, "true");
-        resetTimer();
+        startCountdown();
       } else {
         sessionStorage.removeItem(SESSION_FLAG);
-        if (timeoutRef.current) clearTimeout(timeoutRef.current);
+        stopCountdown();
       }
     });
 
     // 사용자 활동 감지 → 타이머 리셋
     const activityEvents = ["mousedown", "keydown", "scroll", "touchstart"];
     const handleActivity = () => {
-      if (sessionStorage.getItem(SESSION_FLAG)) resetTimer();
+      if (sessionStorage.getItem(SESSION_FLAG)) startCountdown();
     };
     activityEvents.forEach((event) =>
       window.addEventListener(event, handleActivity, { passive: true })
@@ -114,7 +138,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
 
     return () => {
       subscription.unsubscribe();
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      stopCountdown();
       activityEvents.forEach((event) =>
         window.removeEventListener(event, handleActivity)
       );
@@ -123,7 +147,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, session, loading, signOut }}>
+    <AuthContext.Provider value={{ user, session, loading, remainingSeconds, signOut }}>
       {children}
     </AuthContext.Provider>
   );

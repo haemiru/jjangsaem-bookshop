@@ -11,7 +11,14 @@ interface MobileNavProps {
 }
 
 export default function MobileNav({ open, onClose }: MobileNavProps) {
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, remainingSeconds } = useAuth();
+
+  const formatTime = (s: number | null) => {
+    if (s === null) return "";
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
 
   useEffect(() => {
     if (open) {
@@ -70,16 +77,23 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
                   >
                     내 서재
                   </Link>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      signOut();
-                      onClose();
-                    }}
-                    className="rounded-lg px-4 py-3 text-left text-base font-medium text-text-muted transition-colors hover:bg-bg-secondary"
-                  >
-                    로그아웃
-                  </button>
+                  <div className="flex items-center justify-between rounded-lg px-4 py-3">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        signOut();
+                        onClose();
+                      }}
+                      className="text-base font-medium text-text-muted transition-colors hover:text-text-primary"
+                    >
+                      로그아웃
+                    </button>
+                    {remainingSeconds !== null && (
+                      <span className={`font-mono text-sm tabular-nums ${remainingSeconds <= 60 ? "text-red-500" : "text-text-muted"}`}>
+                        {formatTime(remainingSeconds)}
+                      </span>
+                    )}
+                  </div>
                 </>
               ) : (
                 <Link

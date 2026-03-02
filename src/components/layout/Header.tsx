@@ -9,7 +9,14 @@ import MobileNav from "./MobileNav";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { user, loading, signOut } = useAuth();
+  const { user, loading, signOut, remainingSeconds } = useAuth();
+
+  const formatTime = (s: number | null) => {
+    if (s === null) return "";
+    const m = Math.floor(s / 60);
+    const sec = s % 60;
+    return `${m}:${sec.toString().padStart(2, "0")}`;
+  };
 
   return (
     <header className="sticky top-0 z-50 bg-white">
@@ -44,6 +51,11 @@ export default function Header() {
                     >
                       내 서재
                     </Link>
+                    {remainingSeconds !== null && (
+                      <span className={`text-[11px] font-mono tabular-nums ${remainingSeconds <= 60 ? "text-red-500" : "text-text-muted"}`}>
+                        {formatTime(remainingSeconds)}
+                      </span>
+                    )}
                     <button
                       type="button"
                       onClick={signOut}
