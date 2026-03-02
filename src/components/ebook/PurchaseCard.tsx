@@ -55,7 +55,7 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
     setPaymentLoading(true);
     setError("");
     try {
-      const isTestMode = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY === "test_mode";
+      const isTestMode = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY?.trim() === "test_mode";
 
       if (isTestMode) {
         // 테스트 모드: Toss 결제창 없이 바로 구매 처리
