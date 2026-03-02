@@ -29,25 +29,29 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "결제 금액이 일치하지 않습니다." }, { status: 400 });
   }
 
-  // 3. Toss Payments 최종 승인
-  const secretKey = process.env.TOSS_SECRET_KEY!;
-  const basicToken = Buffer.from(`${secretKey}:`).toString("base64");
+  // 3. Toss Payments 최종 승인 (테스트 모드가 아닌 경우만)
+  const isTestMode = paymentKey?.startsWith("test_") && orderId?.startsWith("test_order_");
 
-  const tossResponse = await fetch("https://api.tosspayments.com/v1/payments/confirm", {
-    method: "POST",
-    headers: {
-      Authorization: `Basic ${basicToken}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ paymentKey, orderId, amount }),
-  });
+  if (!isTestMode) {
+    const secretKey = process.env.TOSS_SECRET_KEY!;
+    const basicToken = Buffer.from(`${secretKey}:`).toString("base64");
 
-  if (!tossResponse.ok) {
-    const errorData = await tossResponse.json();
-    return NextResponse.json(
-      { error: errorData.message || "결제 승인에 실패했습니다." },
-      { status: 400 }
-    );
+    const tossResponse = await fetch("https://api.tosspayments.com/v1/payments/confirm", {
+      method: "POST",
+      headers: {
+        Authorization: `Basic ${basicToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ paymentKey, orderId, amount }),
+    });
+
+    if (!tossResponse.ok) {
+      const errorData = await tossResponse.json();
+      return NextResponse.json(
+        { error: errorData.message || "결제 승인에 실패했습니다." },
+        { status: 400 }
+      );
+    }
   }
 
   // 4. DB에 구매 기록 저장 (서비스 롤)
