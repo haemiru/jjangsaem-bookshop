@@ -15,6 +15,7 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
   const [purchased, setPurchased] = useState(false);
   const [checkingPurchase, setCheckingPurchase] = useState(false);
   const [paymentLoading, setPaymentLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
 
   const discount = ebook.originalPrice
@@ -52,12 +53,18 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
     }
 
     setPaymentLoading(true);
+    setError("");
     try {
+      const clientKey = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY;
+      if (!clientKey) {
+        setError("결제 설정이 완료되지 않았습니다. 관리자에게 문의해 주세요.");
+        setPaymentLoading(false);
+        return;
+      }
+
       const { loadTossPayments } = await import("@tosspayments/tosspayments-sdk");
       const { v4: uuidv4 } = await import("uuid");
-      const tossPayments = await loadTossPayments(
-        process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY!
-      );
+      const tossPayments = await loadTossPayments(clientKey);
       const payment = tossPayments.payment({ customerKey: user.id });
       const orderId = uuidv4();
 
@@ -70,7 +77,9 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
         successUrl: `${window.location.origin}/payment/success?slug=${ebook.slug}`,
         failUrl: `${window.location.origin}/payment/fail`,
       });
-    } catch (err) {
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "결제 처리 중 오류가 발생했습니다.";
+      setError(message);
       console.error("결제 오류:", err);
     } finally {
       setPaymentLoading(false);
@@ -117,6 +126,10 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
         >
           {paymentLoading ? "결제 진행 중..." : isLoading ? "확인 중..." : "구매하기"}
         </button>
+      )}
+
+      {error && (
+        <p className="mb-3 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-600">{error}</p>
       )}
 
       {ebook.previewUrl && (
