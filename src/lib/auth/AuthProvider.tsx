@@ -54,7 +54,18 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       return;
     }
 
-    // 브라우저/탭 종료 감지: sessionStorage 플래그 확인
+    // OAuth 콜백에서 돌아온 경우 _auth=1 파라미터로 감지
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("_auth") === "1") {
+      sessionStorage.setItem(SESSION_FLAG, "true");
+      // URL에서 _auth 파라미터 제거 (깔끔한 URL 유지)
+      params.delete("_auth");
+      const cleanUrl = params.toString()
+        ? `${window.location.pathname}?${params.toString()}`
+        : window.location.pathname;
+      window.history.replaceState({}, "", cleanUrl);
+    }
+
     const wasActive = sessionStorage.getItem(SESSION_FLAG);
 
     supabase.auth.getSession().then(({ data: { session: currentSession } }) => {
@@ -72,7 +83,6 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       setLoading(false);
 
       if (currentSession) {
-        sessionStorage.setItem(SESSION_FLAG, "true");
         resetTimer();
       }
     });
@@ -96,7 +106,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
     // 사용자 활동 감지 → 타이머 리셋
     const activityEvents = ["mousedown", "keydown", "scroll", "touchstart"];
     const handleActivity = () => {
-      if (user || session) resetTimer();
+      if (sessionStorage.getItem(SESSION_FLAG)) resetTimer();
     };
     activityEvents.forEach((event) =>
       window.addEventListener(event, handleActivity, { passive: true })

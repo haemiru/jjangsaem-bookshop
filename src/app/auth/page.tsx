@@ -45,6 +45,7 @@ function AuthForm() {
       if (error) {
         setError(error.message);
       } else {
+        sessionStorage.setItem("jjangsaem_session_active", "true");
         router.push(nextUrl);
         router.refresh();
       }
