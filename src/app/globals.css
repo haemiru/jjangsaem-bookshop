@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../fonts/PretendardVariable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+
+  /* 브랜드 색상 */
+  --color-primary: #2c5f8d;
+  --color-primary-light: #3a7ab5;
+  --color-primary-dark: #1e4366;
+  --color-secondary: #ff9933;
+  --color-secondary-light: #ffad5c;
+  --color-secondary-dark: #e6852b;
+  --color-accent: #e74c3c;
+
+  /* 중립 색상 */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f8f9fa;
+  --color-bg-warm: #fffbf5;
+  --color-bg-cream: #fef9f0;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #4a5568;
+  --color-text-muted: #718096;
+  --color-border: #e2e8f0;
+  --color-border-light: #f0f0f0;
+
+  /* 전자책별 색상 */
+  --color-book-healing: #e17055;
+  --color-book-sleep: #9b89b3;
+  --color-book-kit: #00b894;
+  --color-book-development: #6c5ce7;
+  --color-book-training: #2c5f8d;
+
+  /* 애니메이션 */
+  --animate-fade-in: fade-in 0.6s ease-out forwards;
+  --animate-slide-up: slide-up 0.5s ease-out forwards;
+  --animate-float: float 3s ease-in-out infinite;
+  --animate-bounce-in: bounce-in 0.5s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-primary);
+}
+
+@utility touch-target {
+  min-width: 48px;
+  min-height: 48px;
+}
+
+@utility safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
