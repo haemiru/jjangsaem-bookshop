@@ -62,32 +62,17 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
         return;
       }
 
-      // Toss V1 스크립트 로드
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const TossPayments = await new Promise<any>((resolve, reject) => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        if ((window as any).TossPayments) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          resolve((window as any).TossPayments);
-          return;
-        }
-        const script = document.createElement("script");
-        script.src = "https://js.tosspayments.com/v1/payment";
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        script.onload = () => resolve((window as any).TossPayments);
-        script.onerror = () => reject(new Error("결제 모듈을 불러올 수 없습니다."));
-        document.head.appendChild(script);
-      });
-
+      const { loadTossPayments } = await import("@tosspayments/tosspayments-sdk");
       const { v4: uuidv4 } = await import("uuid");
-      const tossPayments = TossPayments(clientKey);
+      const tossPayments = await loadTossPayments(clientKey);
+      const payment = tossPayments.payment({ customerKey: "ANONYMOUS" });
       const orderId = uuidv4();
 
-      await tossPayments.requestPayment("카드", {
-        amount: ebook.price,
+      await payment.requestPayment({
+        method: "CARD",
+        amount: { currency: "KRW", value: ebook.price },
         orderId,
         orderName: ebook.title,
-        customerName: user.email?.split("@")[0] ?? "고객",
         customerEmail: user.email ?? undefined,
         successUrl: `${window.location.origin}/payment/success?slug=${ebook.slug}`,
         failUrl: `${window.location.origin}/payment/fail`,
