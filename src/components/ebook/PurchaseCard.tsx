@@ -62,9 +62,25 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
         return;
       }
 
-      const { loadTossPayments } = await import("@tosspayments/payment-sdk");
+      // Toss V1 스크립트 로드
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const TossPayments = await new Promise<any>((resolve, reject) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        if ((window as any).TossPayments) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          resolve((window as any).TossPayments);
+          return;
+        }
+        const script = document.createElement("script");
+        script.src = "https://js.tosspayments.com/v1/payment";
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        script.onload = () => resolve((window as any).TossPayments);
+        script.onerror = () => reject(new Error("결제 모듈을 불러올 수 없습니다."));
+        document.head.appendChild(script);
+      });
+
       const { v4: uuidv4 } = await import("uuid");
-      const tossPayments = await loadTossPayments(clientKey);
+      const tossPayments = TossPayments(clientKey);
       const orderId = uuidv4();
 
       await tossPayments.requestPayment("카드", {
