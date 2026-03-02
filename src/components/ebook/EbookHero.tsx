@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Ebook } from "@/types/ebook";
 import Badge from "@/components/shared/Badge";
 
@@ -10,9 +11,22 @@ export default function EbookHero({ ebook }: EbookHeroProps) {
     <div
       className={`flex flex-col items-center gap-8 rounded-3xl bg-gradient-to-br ${ebook.colors.gradient} p-8 text-white sm:flex-row sm:p-12`}
     >
-      {/* Cover */}
-      <div className="flex h-52 w-40 flex-shrink-0 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm sm:h-64 sm:w-48">
-        <span className="text-7xl sm:text-8xl">{ebook.coverEmoji}</span>
+      {/* Cover with title overlay */}
+      <div className="relative h-52 w-40 flex-shrink-0 overflow-hidden rounded-2xl shadow-xl sm:h-72 sm:w-52">
+        <Image
+          src={ebook.coverImage}
+          alt={ebook.title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 160px, 208px"
+          priority
+        />
+        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
+          <p className="text-sm font-extrabold leading-tight text-white drop-shadow-lg sm:text-base">
+            {ebook.title}
+          </p>
+          <p className="mt-0.5 text-[10px] text-white/70">{ebook.author}</p>
+        </div>
       </div>
 
       {/* Info */}

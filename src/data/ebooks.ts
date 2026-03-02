@@ -18,6 +18,7 @@ export const ebooks: Ebook[] = [
       gradient: "from-[#e17055] to-[#d35400]",
     },
     coverEmoji: "💛",
+    coverImage: "/images/covers/healing-parent.png",
     features: [
       "4개 파트, 7개 챕터 구성",
       "죄책감·번아웃 극복 실천법",
@@ -50,6 +51,7 @@ export const ebooks: Ebook[] = [
         items: ["작은 목표 세우기", "지속 가능한 돌봄"],
       },
     ],
+    fileKey: "healing-parent/book.pdf",
     purchaseUrl: "https://kmong.com",
     pageCount: 150,
     publishedDate: "2026-01-15",
@@ -71,6 +73,7 @@ export const ebooks: Ebook[] = [
       gradient: "from-[#9b89b3] to-[#7b6a9b]",
     },
     coverEmoji: "🌙",
+    coverImage: "/images/covers/sensory-sleep.png",
     features: [
       "4주 완성 수면 훈련 프로그램",
       "후각·호흡 연결 과학적 근거",
@@ -99,13 +102,14 @@ export const ebooks: Ebook[] = [
         items: ["수면 기록지", "향기 가이드", "전문가 네트워크"],
       },
     ],
+    fileKey: "sensory-sleep/book.pdf",
     purchaseUrl: "https://kmong.com",
     pageCount: 160,
     publishedDate: "2026-01-01",
   },
   {
     slug: "olfactory-kit",
-    title: "Olfactory Kit Development Guide",
+    title: "느린아이 레벨업 시켜주는 후각키트 제작과 활용 가이드북",
     subtitle: "후각 훈련 키트 개발 실전 가이드",
     author: "짱샘 · 피지오 후각 연구소",
     description:
@@ -120,6 +124,7 @@ export const ebooks: Ebook[] = [
       gradient: "from-[#00b894] to-[#00a381]",
     },
     coverEmoji: "🧪",
+    coverImage: "/images/covers/olfactory-kit.png",
     features: [
       "향료 선택·배합 가이드",
       "안전 기준 및 인증 정보",
@@ -148,13 +153,14 @@ export const ebooks: Ebook[] = [
         items: ["키트 제작 워크플로", "유통 채널 전략"],
       },
     ],
+    fileKey: "olfactory-kit/book.pdf",
     purchaseUrl: "https://kmong.com",
     pageCount: 120,
     publishedDate: "2026-02-01",
   },
   {
     slug: "olfactory-development",
-    title: "Practical Guide to Olfactory Development",
+    title: "후각 발달 훈련 가이드북",
     subtitle: "후각 발달 실전 적용 가이드",
     author: "짱샘 · 피지오 후각 연구소",
     description:
@@ -169,6 +175,7 @@ export const ebooks: Ebook[] = [
       gradient: "from-[#6c5ce7] to-[#4834d4]",
     },
     coverEmoji: "🌿",
+    coverImage: "/images/covers/olfactory-development.png",
     features: [
       "연령별 후각 발달 로드맵",
       "발달 단계별 자극 프로그램",
@@ -197,13 +204,14 @@ export const ebooks: Ebook[] = [
         items: ["발달 평가 도구", "진행 기록 양식"],
       },
     ],
+    fileKey: "olfactory-development/book.pdf",
     purchaseUrl: "https://kmong.com",
     pageCount: 140,
     publishedDate: "2026-02-15",
   },
   {
     slug: "olfactory-training",
-    title: "Understanding Olfactory Training",
+    title: "후각 훈련의 이해",
     subtitle: "후각 훈련의 과학적 이해",
     author: "짱샘 · 피지오 후각 연구소",
     description:
@@ -218,6 +226,7 @@ export const ebooks: Ebook[] = [
       gradient: "from-[#2C5F8D] to-[#1e4366]",
     },
     coverEmoji: "🧠",
+    coverImage: "/images/covers/olfactory-training.png",
     features: [
       "후각 신경 가소성의 과학",
       "훈련 프로토콜 비교 분석",
@@ -246,6 +255,7 @@ export const ebooks: Ebook[] = [
         items: ["대상별 적용 가이드", "효과 측정 방법"],
       },
     ],
+    fileKey: "olfactory-training/book.pdf",
     purchaseUrl: "https://kmong.com",
     pageCount: 130,
     publishedDate: "2026-03-01",

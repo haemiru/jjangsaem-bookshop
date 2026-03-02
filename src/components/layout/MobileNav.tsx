@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { navItems } from "@/data/navigation";
+import { useAuth } from "@/lib/auth/AuthProvider";
 
 interface MobileNavProps {
   open: boolean;
@@ -10,6 +11,8 @@ interface MobileNavProps {
 }
 
 export default function MobileNav({ open, onClose }: MobileNavProps) {
+  const { user, loading, signOut } = useAuth();
+
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -31,7 +34,7 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
       {/* Panel */}
       <div className="absolute right-0 top-0 h-full w-72 bg-bg-primary p-6 shadow-xl">
         <div className="mb-8 flex items-center justify-between">
-          <span className="text-lg font-bold text-primary">📖 짱샘의 책방</span>
+          <span className="text-lg font-bold text-primary">📖 짱샘의 치유책방</span>
           <button
             type="button"
             onClick={onClose}
@@ -55,13 +58,52 @@ export default function MobileNav({ open, onClose }: MobileNavProps) {
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/ebook"
-            onClick={onClose}
-            className="mt-4 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
-          >
-            전자책 보기
-          </Link>
+
+          {!loading && (
+            <>
+              {user ? (
+                <>
+                  <Link
+                    href="/my-library"
+                    onClick={onClose}
+                    className="rounded-lg px-4 py-3 text-base font-semibold text-primary transition-colors hover:bg-bg-secondary"
+                  >
+                    내 서재
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      signOut();
+                      onClose();
+                    }}
+                    className="rounded-lg px-4 py-3 text-left text-base font-medium text-text-muted transition-colors hover:bg-bg-secondary"
+                  >
+                    로그아웃
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/auth"
+                  onClick={onClose}
+                  className="mt-4 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+                >
+                  로그인
+                </Link>
+              )}
+            </>
+          )}
+
+          {user && (
+            <Link
+              href="/ebook"
+              onClick={onClose}
+              className="mt-2 rounded-full bg-primary px-5 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-primary-dark"
+            >
+              전자책 보기
+            </Link>
+          )}
+
+          {!user && !loading && null}
         </nav>
       </div>
     </div>

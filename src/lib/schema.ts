@@ -7,7 +7,7 @@ export function generateWebsiteSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "짱샘의 책방",
+    name: "짱샘의 치유책방",
     url: SITE_URL,
     description:
       "발달장애 아동의 후각 훈련, 수면 개선, 부모 치유를 위한 감각 기반 치유 전자책",

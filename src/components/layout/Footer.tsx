@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <Link href="/" className="text-lg font-bold text-primary">
-              📖 짱샘의 책방
+              📖 짱샘의 치유책방
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-text-muted">
               발달장애 아동과 가족을 위한
@@ -63,7 +63,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 border-t border-border pt-6 text-center text-xs text-text-muted">
-          &copy; {new Date().getFullYear()} 짱샘의 책방. All rights reserved.
+          &copy; {new Date().getFullYear()} 짱샘의 치유책방. All rights reserved.
         </div>
       </Container>
     </footer>

@@ -14,8 +14,10 @@ export interface Ebook {
     gradient: string;
   };
   coverEmoji: string;
+  coverImage: string;
   features: string[];
   toc: TocItem[];
+  fileKey: string;
   purchaseUrl: string;
   previewUrl?: string;
   pageCount: number;

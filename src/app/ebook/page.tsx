@@ -17,7 +17,7 @@ export default function EbookListPage() {
           title="전자책 카탈로그"
           subtitle="감각 기반 치유와 발달 지원을 위한 전문 전자책"
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {ebooks.map((ebook) => (
             <EbookCard key={ebook.slug} ebook={ebook} />
           ))}

@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Container from "@/components/layout/Container";
 import EbookHero from "@/components/ebook/EbookHero";
 import TocSection from "@/components/ebook/TocSection";
@@ -90,13 +91,21 @@ export default async function EbookDetailPage({ params }: PageProps) {
                     className="group rounded-xl border border-border bg-bg-primary p-4 transition-shadow hover:shadow-md"
                   >
                     <div
-                      className={`mb-3 flex h-20 items-center justify-center rounded-lg bg-gradient-to-br ${b.colors.gradient}`}
+                      className={`relative mb-3 aspect-[3/4] overflow-hidden rounded-lg bg-gradient-to-br ${b.colors.gradient}`}
                     >
-                      <span className="text-3xl">{b.coverEmoji}</span>
+                      <Image
+                        src={b.coverImage}
+                        alt={b.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                      <div className="absolute inset-0 flex items-end bg-gradient-to-t from-black/60 to-transparent p-2">
+                        <p className="text-xs font-bold leading-tight text-white drop-shadow">
+                          {b.title}
+                        </p>
+                      </div>
                     </div>
-                    <p className="text-sm font-bold text-text-primary group-hover:text-primary">
-                      {b.title}
-                    </p>
                     <p className="mt-1 text-xs text-text-muted">
                       {b.price.toLocaleString()}원
                     </p>
