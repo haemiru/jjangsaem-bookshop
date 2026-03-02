@@ -62,17 +62,16 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
         return;
       }
 
-      const { loadTossPayments } = await import("@tosspayments/tosspayments-sdk");
+      const { loadTossPayments } = await import("@tosspayments/payment-sdk");
       const { v4: uuidv4 } = await import("uuid");
       const tossPayments = await loadTossPayments(clientKey);
-      const payment = tossPayments.payment({ customerKey: user.id });
       const orderId = uuidv4();
 
-      await payment.requestPayment({
-        method: "CARD",
-        amount: { currency: "KRW", value: ebook.price },
+      await tossPayments.requestPayment("카드", {
+        amount: ebook.price,
         orderId,
         orderName: ebook.title,
+        customerName: user.email?.split("@")[0] ?? "고객",
         customerEmail: user.email ?? undefined,
         successUrl: `${window.location.origin}/payment/success?slug=${ebook.slug}`,
         failUrl: `${window.location.origin}/payment/fail`,
