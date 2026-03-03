@@ -21,6 +21,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: post.title,
     description: post.excerpt,
+    openGraph: post.coverImage
+      ? { images: [{ url: post.coverImage }] }
+      : undefined,
   };
 }
 
@@ -47,20 +50,27 @@ export default async function BlogPostPage({ params }: PageProps) {
           <span>{post.readTime}분 읽기</span>
         </div>
 
-        <div className="rounded-2xl border border-border bg-bg-warm p-8 text-center">
-          <p className="mb-4 text-lg font-semibold text-text-primary">
-            이 글은 곧 공개됩니다
-          </p>
-          <p className="mb-6 text-sm text-text-muted">
-            블로그 콘텐츠를 준비 중입니다. 조금만 기다려 주세요!
-          </p>
-          <Link
-            href="/blog"
-            className="inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark"
-          >
-            블로그 목록으로
-          </Link>
-        </div>
+        {post.content ? (
+          <div
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          />
+        ) : (
+          <div className="rounded-2xl border border-border bg-bg-warm p-8 text-center">
+            <p className="mb-4 text-lg font-semibold text-text-primary">
+              이 글은 곧 공개됩니다
+            </p>
+            <p className="mb-6 text-sm text-text-muted">
+              블로그 콘텐츠를 준비 중입니다. 조금만 기다려 주세요!
+            </p>
+            <Link
+              href="/blog"
+              className="inline-block rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark"
+            >
+              블로그 목록으로
+            </Link>
+          </div>
+        )}
       </Container>
     </div>
   );
