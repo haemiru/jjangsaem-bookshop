@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { navItems } from "@/data/navigation";
 import { useAuth } from "@/lib/auth/AuthProvider";
 import Container from "./Container";
@@ -9,6 +10,7 @@ import MobileNav from "./MobileNav";
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const pathname = usePathname();
   const { user, loading, signOut, remainingSeconds } = useAuth();
 
   const formatTime = (s: number | null) => {
@@ -94,26 +96,28 @@ export default function Header() {
       <div className="border-b border-gray-100 bg-gray-50">
         <Container>
           <div className="hidden items-center gap-1 md:flex">
-            <Link
-              href="/ebook"
-              className="rounded-md px-3 py-2 text-[13px] font-semibold text-primary transition-colors hover:bg-primary/5"
-            >
-              전자책
-            </Link>
-            <span className="text-gray-300">|</span>
-            <Link
-              href="/blog"
-              className="rounded-md px-3 py-2 text-[13px] text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-            >
-              블로그
-            </Link>
-            <span className="text-gray-300">|</span>
-            <Link
-              href="/about"
-              className="rounded-md px-3 py-2 text-[13px] text-gray-500 transition-colors hover:bg-gray-100 hover:text-gray-700"
-            >
-              짱샘 소개
-            </Link>
+            {[
+              { href: "/ebook", label: "전자책" },
+              { href: "/blog", label: "블로그" },
+              { href: "/about", label: "짱샘 소개" },
+            ].map((item, i) => {
+              const isActive = pathname.startsWith(item.href);
+              return (
+                <span key={item.href} className="flex items-center gap-1">
+                  {i > 0 && <span className="text-gray-300">|</span>}
+                  <Link
+                    href={item.href}
+                    className={`rounded-md px-3 py-2 text-[13px] transition-colors ${
+                      isActive
+                        ? "font-semibold text-primary hover:bg-primary/5"
+                        : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                </span>
+              );
+            })}
           </div>
         </Container>
       </div>
