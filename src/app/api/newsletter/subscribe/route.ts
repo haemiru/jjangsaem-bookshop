@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServiceClient } from "@/lib/supabase/service";
+import { sendWelcomeEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
   try {
@@ -33,6 +34,7 @@ export async function POST(request: Request) {
         .update({ subscribed: true })
         .eq("id", existing.id);
 
+      sendWelcomeEmail(email).catch(() => {});
       return NextResponse.json({ message: "다시 구독해주셔서 감사합니다!" });
     }
 
@@ -48,6 +50,7 @@ export async function POST(request: Request) {
       );
     }
 
+    sendWelcomeEmail(email).catch(() => {});
     return NextResponse.json({ message: "구독해주셔서 감사합니다!" });
   } catch {
     return NextResponse.json(
