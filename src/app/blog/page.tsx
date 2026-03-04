@@ -6,7 +6,7 @@ import { blogPosts } from "@/data/blogPosts";
 
 export const metadata: Metadata = {
   title: "블로그",
-  description: "바이브 코딩, AI 활용, 전자책 출판에 관한 유용한 글 모음.",
+  description: "후각과 호흡이 가진 치유의 힘, 뇌과학으로 풀어드립니다.",
 };
 
 export default function BlogListPage() {
@@ -15,7 +15,7 @@ export default function BlogListPage() {
       <Container>
         <SectionHeading
           title="블로그"
-          subtitle="AI와 바이브 코딩에 관한 유용한 글을 공유합니다"
+          subtitle="후각과 호흡이 가진 치유의 힘, 뇌과학으로 풀어드립니다"
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post) => (

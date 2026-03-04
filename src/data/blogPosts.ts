@@ -314,7 +314,7 @@ export const blogPosts: BlogPost[] = [
       <h2>더 깊은 치유가 필요하다면</h2>
       <p>
         이 글에서 소개한 방법들은 시작일 뿐입니다.
-        <strong>『괜찮아, 엄마도 아프니까』</strong>에서는
+        <strong>『엄마라서 괜찮아!』</strong>에서는
         발달장애 아동 부모를 위한 체계적인 자기돌봄 프로그램,
         실제 부모님들의 치유 사례, 그리고 전문가의 조언을
         더욱 자세히 다루고 있습니다.
@@ -326,7 +326,7 @@ export const blogPosts: BlogPost[] = [
       <div class="blog-cta">
         <p class="blog-cta-text">지금 전자책에서 전체 내용을 확인하세요</p>
         <a href="/ebook/healing-parent" class="blog-cta-button">
-          『괜찮아, 엄마도 아프니까』 구매하기
+          『엄마라서 괜찮아!』 구매하기
         </a>
       </div>
 

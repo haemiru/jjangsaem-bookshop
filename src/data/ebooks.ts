@@ -3,13 +3,13 @@ import { Ebook } from "@/types/ebook";
 export const ebooks: Ebook[] = [
   {
     slug: "healing-parent",
-    title: "괜찮아, 엄마도 아프니까",
+    title: "엄마라서 괜찮아!",
     subtitle: "발달지연 아동 부모를 위한 내면 치유 가이드",
     author: "피지오 아카데미",
     description:
       "발달지연 아동 부모를 위한 내면 치유 가이드. 죄책감, 번아웃, 부부 갈등 등 양육 과정에서 겪는 심리적 어려움을 따뜻하게 다루며, 부모 스스로를 돌보는 실천법을 제시합니다.",
-    price: 9900,
-    originalPrice: 14000,
+    price: 5500,
+    originalPrice: 9900,
     category: "부모 치유",
     colorKey: "book-healing",
     colors: {
@@ -82,8 +82,8 @@ export const ebooks: Ebook[] = [
     author: "장지예 · 피지오 후각 연구소",
     description:
       "발달장애 아동을 위한 후각·호흡 기반 수면 훈련 프로그램. 4주 간의 단계별 훈련 가이드와 사례 연구, 전문가 조언을 포함합니다.",
-    price: 11900,
-    originalPrice: 16000,
+    price: 9900,
+    originalPrice: 14000,
     category: "수면 훈련",
     colorKey: "book-sleep",
     colors: {
@@ -158,8 +158,8 @@ export const ebooks: Ebook[] = [
     author: "짱샘 · 피지오 후각 연구소",
     description:
       "후각 훈련에 필요한 키트를 직접 개발하고 구성하는 실전 가이드. 향료 선택, 안전 기준, 농도 조절, 키트 패키징까지 후각 키트 제작의 전 과정을 다룹니다.",
-    price: 13900,
-    originalPrice: 18000,
+    price: 38000,
+    originalPrice: 48000,
     category: "후각 키트",
     colorKey: "book-kit",
     colors: {
@@ -226,8 +226,8 @@ export const ebooks: Ebook[] = [
     author: "짱샘 · 피지오 후각 연구소",
     description:
       "후각 발달의 과학적 원리와 실전 적용법을 담은 가이드. 연령별·발달 단계별 후각 자극 프로그램 설계, 평가 방법, 가정 내 적용 전략을 포함합니다.",
-    price: 12900,
-    originalPrice: 17000,
+    price: 29000,
+    originalPrice: 38000,
     category: "후각 발달",
     colorKey: "book-development",
     colors: {
@@ -309,8 +309,8 @@ export const ebooks: Ebook[] = [
     author: "짱샘 · 피지오 후각 연구소",
     description:
       "후각 훈련의 신경과학적 근거와 원리를 체계적으로 정리한 전자책. 후각 신경 가소성, 훈련 효과의 과학적 증거, 다양한 훈련 프로토콜 비교 분석을 다룹니다.",
-    price: 10900,
-    originalPrice: 15000,
+    price: 6600,
+    originalPrice: 10900,
     category: "후각 훈련",
     colorKey: "book-training",
     colors: {
