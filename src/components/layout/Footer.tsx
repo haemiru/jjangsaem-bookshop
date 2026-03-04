@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "./Container";
+import NewsletterForm from "./NewsletterForm";
 
 export default function Footer() {
   return (
@@ -46,19 +47,7 @@ export default function Footer() {
             <p className="mb-3 text-sm text-text-muted">
               새 전자책 출간과 유용한 팁을 받아보세요.
             </p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="이메일 주소"
-                className="flex-1 rounded-lg border border-border bg-bg-primary px-3 py-2 text-sm outline-none focus:border-primary"
-              />
-              <button
-                type="button"
-                className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-primary-dark"
-              >
-                구독
-              </button>
-            </div>
+            <NewsletterForm />
           </div>
         </div>
 
