@@ -74,7 +74,9 @@ export default function MyLibraryPage() {
                   className="relative mb-4 aspect-[3/4] overflow-hidden rounded-xl"
                   style={{
                     background: ebook
-                      ? `linear-gradient(135deg, ${ebook.colors.primary}, ${ebook.colors.secondary})`
+                      ? ebook.coverHasText
+                        ? "#ffffff"
+                        : `linear-gradient(135deg, ${ebook.colors.primary}, ${ebook.colors.secondary})`
                       : "#e2e8f0",
                   }}
                 >
@@ -84,7 +86,7 @@ export default function MyLibraryPage() {
                         src={ebook.coverImage}
                         alt={purchase.ebook_title}
                         fill
-                        className="object-cover"
+                        className={ebook.coverHasText ? "object-contain" : "object-cover"}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       {!ebook.coverHasText && (

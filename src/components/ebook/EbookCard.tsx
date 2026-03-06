@@ -13,13 +13,13 @@ export default function EbookCard({ ebook }: EbookCardProps) {
       <div className="overflow-hidden rounded-xl border border-border bg-bg-primary transition-all hover:shadow-lg">
         {/* Cover with text overlay */}
         <div
-          className={`relative aspect-[3/4] overflow-hidden bg-gradient-to-br ${ebook.colors.gradient}`}
+          className={`relative aspect-[3/4] overflow-hidden ${ebook.coverHasText ? "bg-white" : `bg-gradient-to-br ${ebook.colors.gradient}`}`}
         >
           <Image
             src={ebook.coverImage}
             alt={ebook.title}
             fill
-            className="object-cover transition-transform group-hover:scale-105"
+            className={`${ebook.coverHasText ? "object-contain" : "object-cover"} transition-transform group-hover:scale-105`}
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
           {/* Text overlay */}

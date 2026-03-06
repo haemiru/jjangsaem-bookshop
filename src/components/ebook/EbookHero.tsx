@@ -12,12 +12,12 @@ export default function EbookHero({ ebook }: EbookHeroProps) {
       className={`flex flex-col items-center gap-8 rounded-3xl bg-gradient-to-br ${ebook.colors.gradient} p-8 text-white sm:flex-row sm:p-12`}
     >
       {/* Cover with title overlay */}
-      <div className="relative h-52 w-40 flex-shrink-0 overflow-hidden rounded-2xl shadow-xl sm:h-72 sm:w-52">
+      <div className={`relative h-52 w-40 flex-shrink-0 overflow-hidden rounded-2xl shadow-xl sm:h-72 sm:w-52 ${ebook.coverHasText ? "bg-white" : ""}`}>
         <Image
           src={ebook.coverImage}
           alt={ebook.title}
           fill
-          className="object-cover"
+          className={ebook.coverHasText ? "object-contain" : "object-cover"}
           sizes="(max-width: 640px) 160px, 208px"
           priority
         />
