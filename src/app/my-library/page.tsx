@@ -87,15 +87,17 @@ export default function MyLibraryPage() {
                         className="object-cover"
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
-                      <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/50 p-2.5 pt-4">
-                        <h3 className="text-sm font-extrabold leading-snug text-white drop-shadow-lg" style={{ wordBreak: "keep-all" }}>
-                          {ebook.title}
-                        </h3>
-                        <div>
-                          <p className="text-[10px] text-white/80 drop-shadow" style={{ wordBreak: "keep-all" }}>{ebook.subtitle}</p>
-                          <p className="mt-1 text-[10px] text-white/60 drop-shadow">{ebook.author}</p>
+                      {!ebook.coverHasText && (
+                        <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/50 p-2.5 pt-4">
+                          <h3 className="text-sm font-extrabold leading-snug text-white drop-shadow-lg" style={{ wordBreak: "keep-all" }}>
+                            {ebook.title}
+                          </h3>
+                          <div>
+                            <p className="text-[10px] text-white/80 drop-shadow" style={{ wordBreak: "keep-all" }}>{ebook.subtitle}</p>
+                            <p className="mt-1 text-[10px] text-white/60 drop-shadow">{ebook.author}</p>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </>
                   ) : (
                     <span className="flex h-full items-center justify-center text-4xl">📖</span>

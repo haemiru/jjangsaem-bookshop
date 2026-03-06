@@ -23,15 +23,17 @@ export default function EbookCard({ ebook }: EbookCardProps) {
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
           />
           {/* Text overlay */}
-          <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/50 p-2.5 pt-4">
-            <h3 className="text-sm font-extrabold leading-snug text-white drop-shadow-lg sm:text-base" style={{ wordBreak: "keep-all" }}>
-              {ebook.title}
-            </h3>
-            <div>
-              <p className="text-[10px] text-white/80 drop-shadow" style={{ wordBreak: "keep-all" }}>{ebook.subtitle}</p>
-              <p className="mt-1 text-[10px] text-white/60 drop-shadow">장지예 · 피지오 후각 연구소</p>
+          {!ebook.coverHasText && (
+            <div className="absolute inset-0 flex flex-col justify-between bg-gradient-to-b from-black/40 via-transparent to-black/50 p-2.5 pt-4">
+              <h3 className="text-sm font-extrabold leading-snug text-white drop-shadow-lg sm:text-base" style={{ wordBreak: "keep-all" }}>
+                {ebook.title}
+              </h3>
+              <div>
+                <p className="text-[10px] text-white/80 drop-shadow" style={{ wordBreak: "keep-all" }}>{ebook.subtitle}</p>
+                <p className="mt-1 text-[10px] text-white/60 drop-shadow">장지예 · 피지오 후각 연구소</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="p-3">

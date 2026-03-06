@@ -38,6 +38,8 @@
   --color-book-kit: #00b894;
   --color-book-development: #6c5ce7;
   --color-book-training: #2c5f8d;
+  --color-book-breath: #5b7b9a;
+  --color-book-golden: #e8a87c;
 
   /* 애니메이션 */
   --animate-fade-in: fade-in 0.6s ease-out forwards;

@@ -21,12 +21,14 @@ export default function EbookHero({ ebook }: EbookHeroProps) {
           sizes="(max-width: 640px) 160px, 208px"
           priority
         />
-        <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
-          <p className="text-sm font-extrabold leading-tight text-white drop-shadow-lg sm:text-base">
-            {ebook.title}
-          </p>
-          <p className="mt-0.5 text-[10px] text-white/70">{ebook.author}</p>
-        </div>
+        {!ebook.coverHasText && (
+          <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/20 to-transparent p-3">
+            <p className="text-sm font-extrabold leading-tight text-white drop-shadow-lg sm:text-base">
+              {ebook.title}
+            </p>
+            <p className="mt-0.5 text-[10px] text-white/70">{ebook.author}</p>
+          </div>
+        )}
       </div>
 
       {/* Info */}

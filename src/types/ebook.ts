@@ -15,6 +15,7 @@ export interface Ebook {
   };
   coverEmoji: string;
   coverImage: string;
+  coverHasText?: boolean;
   features: string[];
   toc: TocItem[];
   fileKey: string;

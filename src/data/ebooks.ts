@@ -361,6 +361,174 @@ export const ebooks: Ebook[] = [
     pageCount: 73,
     publishedDate: "2026-03-01",
   },
+  {
+    slug: "breath-first",
+    title: "아이를 고치기 전에 숨부터 봅니다",
+    subtitle: "발달장애 아동의 호흡을 이해하는 부모를 위한 안내서",
+    author: "짱샘 · 피지오 후각 연구소",
+    description:
+      "25년 경력의 소아 물리치료사가 전하는 발달장애 아동 호흡 안내서. 구강호흡과 과호흡이 아이의 뇌와 정서에 미치는 영향을 설명하고, 치료보다 먼저 숨을 살펴야 하는 이유와 가정에서 실천할 수 있는 호흡 관리법을 제시합니다.",
+    price: 9900,
+    originalPrice: 18900,
+    category: "호흡 이해",
+    colorKey: "book-breath",
+    colors: {
+      primary: "#5B7B9A",
+      secondary: "#A8D5BA",
+      gradient: "from-[#5B7B9A] to-[#3D5A80]",
+    },
+    coverEmoji: "🫁",
+    coverImage: "/images/covers/breath-first.png",
+    coverHasText: true,
+    features: [
+      "프롤로그 + 6장 구성",
+      "구강호흡·과호흡이 뇌에 미치는 영향",
+      "하루 3분 관찰 가이드",
+      "보호자 셀프 케어 포함",
+    ],
+    toc: [
+      {
+        chapter: "프롤로그",
+        title: "왜 나는 '숨'에 대해 다시 쓰게 되었는가",
+      },
+      {
+        chapter: "서론",
+        title: "숨을 잘 훈련하는 것과, 잘 쉬게 하는 것은 다르다",
+      },
+      {
+        chapter: "1장",
+        title: "정말 치료를 더 해야 할까?",
+        items: ["치료가 늘어날수록 커지는 불안"],
+      },
+      {
+        chapter: "2장",
+        title: "아이의 입과 숨을 본 적이 있는가",
+        items: ["하루 3분 관찰 가이드"],
+      },
+      {
+        chapter: "3장",
+        title: "뇌는 '숨'을 가장 먼저 듣는다",
+        items: [
+          "과호흡이 반복되면 생기는 일",
+          "왜 멍해지고, 왜 예민해질까",
+          "ADHD, 불안, 감각 문제와 숨의 공통점",
+        ],
+      },
+      {
+        chapter: "4장",
+        title: "숨이 편안해지기 위한 조건 만들기",
+      },
+      {
+        chapter: "5장",
+        title: "절대 하지 말아야 할 말",
+        items: [
+          "하루 루틴은 '짧게'면 충분합니다",
+          "치료와 병행할 때의 기준",
+          "아이의 반응을 읽는 법",
+        ],
+      },
+      {
+        chapter: "6장",
+        title: "아이보다 보호자를 먼저 지키는 이유",
+        items: ["보호자가 무너지면, 아이는 더 버틴다"],
+      },
+    ],
+    fileKey: "breath-first/book.pdf",
+    purchaseUrl: "https://kmong.com",
+    pageCount: 34,
+    publishedDate: "2026-03-07",
+  },
+  {
+    slug: "golden-time-breathing",
+    title: "성장하는 골든타임을 위한 호흡의 비밀",
+    subtitle: "발달장애 아동의 호흡 관리 — 25년 임상 경험의 기록",
+    author: "짱샘 · 피지오 후각 연구소",
+    description:
+      "발달장애 아동의 코 호흡 훈련 실전 가이드. 숨이 무너지면 어떤 재활도 오래 가지 않는다는 임상 경험을 바탕으로, 심박수 기반 호흡 상태 평가, 비강 관리, 연령별 호흡 실습까지 체계적으로 안내합니다.",
+    price: 38000,
+    originalPrice: 69000,
+    category: "호흡 실전",
+    colorKey: "book-golden",
+    colors: {
+      primary: "#E8A87C",
+      secondary: "#F8D5B8",
+      gradient: "from-[#E8A87C] to-[#C4956A]",
+    },
+    coverEmoji: "🌬️",
+    coverImage: "/images/covers/golden-time-breathing.png",
+    coverHasText: true,
+    features: [
+      "프롤로그 + 9장 구성",
+      "심박수 기반 호흡 상태 평가",
+      "비강 관리·구강 테이프 실전 가이드",
+      "아동 연령별 호흡 실습",
+    ],
+    toc: [
+      {
+        chapter: "서론",
+        title: "이 책을 읽기 전에",
+        items: [
+          "왜 '치료'보다 '숨'이 먼저여야 하는가",
+          "숨이 무너지면, 어떤 재활도 오래 가지 않는다",
+        ],
+      },
+      {
+        chapter: "1장",
+        title: "겉으로는 괜찮아 보여도 숨은 이미 무너져 있다",
+        items: ["치료를 많이 받는데도 달라지지 않는 이유"],
+      },
+      {
+        chapter: "2장",
+        title: "숨이 망가지면 뇌에서 먼저 일어나는 일",
+        items: [
+          "인간만 입으로 숨 쉬는 이유",
+          "씹지 않는 환경이 얼굴 구조를 바꾼다",
+        ],
+      },
+      {
+        chapter: "3장",
+        title: "심박수로 보는 아이의 호흡 상태",
+      },
+      {
+        chapter: "4장",
+        title: "코가 막히면 모든 호흡은 실패한다",
+        items: [
+          "\"코가 막힌 것 같지 않은데요?\"라는 착각",
+          "보이지 않는 비염이 만드는 악순환",
+        ],
+      },
+      {
+        chapter: "5장",
+        title: "구강 테이프·비강 도구, 언제 쓰고 언제 멈춰야 하는가",
+      },
+      {
+        chapter: "6장",
+        title: "호흡 훈련의 핵심은 '자기 호흡 리듬'이다",
+        items: [
+          "자기 호흡 리듬이란 무엇인가",
+          "왜 '열심히 하는 호흡 훈련'이 실패하는가",
+        ],
+      },
+      {
+        chapter: "7장",
+        title: "숨은 몸 전체에서 회복된다",
+      },
+      {
+        chapter: "8장",
+        title: "아동 연령별 호흡 실습 가이드",
+        items: ["유아기와 학령기의 차이"],
+      },
+      {
+        chapter: "9장",
+        title: "호흡은 치료가 아니라 관리다",
+        items: ["치료비를 줄이는 진짜 구조"],
+      },
+    ],
+    fileKey: "golden-time-breathing/book.pdf",
+    purchaseUrl: "https://kmong.com",
+    pageCount: 24,
+    publishedDate: "2026-03-07",
+  },
 ];
 
 export function getEbookBySlug(slug: string): Ebook | undefined {
