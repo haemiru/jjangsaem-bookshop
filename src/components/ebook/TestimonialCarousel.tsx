@@ -16,7 +16,7 @@ export default function TestimonialCarousel({
   accentColor,
 }: TestimonialCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
@@ -26,8 +26,8 @@ export default function TestimonialCarousel({
 
   useEffect(() => {
     const update = () => {
-      if (!containerRef.current) return;
-      const w = containerRef.current.offsetWidth;
+      if (!viewportRef.current) return;
+      const w = viewportRef.current.offsetWidth;
       setCardWidth((w - GAP * (VISIBLE - 1)) / VISIBLE);
     };
     update();
@@ -61,7 +61,6 @@ export default function TestimonialCarousel({
     <section className="mt-16">
       <h2 className="mb-6 text-xl font-bold text-text-primary">독자 후기</h2>
       <div
-        ref={containerRef}
         className="group relative"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -79,8 +78,8 @@ export default function TestimonialCarousel({
           </svg>
         </button>
 
-        {/* Track */}
-        <div className="overflow-hidden">
+        {/* Viewport — ref here for width calculation */}
+        <div ref={viewportRef} className="overflow-hidden">
           <div
             ref={trackRef}
             className="flex transition-transform duration-500 ease-in-out"
@@ -89,24 +88,26 @@ export default function TestimonialCarousel({
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="flex-shrink-0 rounded-2xl border border-border bg-bg-primary p-6"
+                className="flex-shrink-0"
                 style={{ width: cardWidth || "auto" }}
               >
-                <div className="mb-3 flex gap-1">
-                  {Array.from({ length: t.rating }).map((_, j) => (
-                    <span key={j} className="text-secondary">
-                      ★
-                    </span>
-                  ))}
-                </div>
-                <p className="mb-4 text-sm leading-relaxed text-text-secondary">
-                  &ldquo;{t.content}&rdquo;
-                </p>
-                <div>
-                  <p className="text-sm font-semibold text-text-primary">
-                    {t.name}
+                <div className="flex h-full flex-col rounded-2xl border border-border bg-bg-primary p-6">
+                  <div className="mb-3 flex gap-1">
+                    {Array.from({ length: t.rating }).map((_, j) => (
+                      <span key={j} className="text-secondary">
+                        ★
+                      </span>
+                    ))}
+                  </div>
+                  <p className="mb-4 flex-1 text-sm leading-relaxed text-text-secondary">
+                    &ldquo;{t.content}&rdquo;
                   </p>
-                  <p className="text-xs text-text-muted">{t.role}</p>
+                  <div>
+                    <p className="text-sm font-semibold text-text-primary">
+                      {t.name}
+                    </p>
+                    <p className="text-xs text-text-muted">{t.role}</p>
+                  </div>
                 </div>
               </div>
             ))}

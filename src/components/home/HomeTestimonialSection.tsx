@@ -20,7 +20,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   const bookTitle = ebook?.title ?? "";
 
   return (
-    <div className="flex-shrink-0 rounded-2xl border border-border bg-bg-primary p-5">
+    <div className="flex h-full flex-col rounded-2xl border border-border bg-bg-primary p-5">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex gap-0.5">
           {Array.from({ length: t.rating }).map((_, j) => (
@@ -35,7 +35,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
           </span>
         )}
       </div>
-      <p className="mb-3 text-sm leading-relaxed text-text-secondary">
+      <p className="mb-3 flex-1 text-sm leading-relaxed text-text-secondary">
         &ldquo;{t.content}&rdquo;
       </p>
       <div>
@@ -54,20 +54,18 @@ const INTERVAL = 4000;
 export default function HomeTestimonialSection() {
   const shuffled = useMemo(() => shuffle(testimonials), []);
   const trackRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
 
   const maxIndex = Math.max(0, shuffled.length - VISIBLE);
 
-  // Calculate card width based on container
   useEffect(() => {
     const update = () => {
-      if (!containerRef.current) return;
-      const containerWidth = containerRef.current.offsetWidth;
-      const totalGap = GAP * (VISIBLE - 1);
-      setCardWidth((containerWidth - totalGap) / VISIBLE);
+      if (!viewportRef.current) return;
+      const w = viewportRef.current.offsetWidth;
+      setCardWidth((w - GAP * (VISIBLE - 1)) / VISIBLE);
     };
     update();
     window.addEventListener("resize", update);
@@ -103,7 +101,6 @@ export default function HomeTestimonialSection() {
         />
       </Container>
       <div
-        ref={containerRef}
         className="group relative mx-auto max-w-6xl px-10 sm:px-14"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -121,15 +118,15 @@ export default function HomeTestimonialSection() {
           </svg>
         </button>
 
-        {/* Track */}
-        <div className="overflow-hidden">
+        {/* Viewport — ref here for width calculation */}
+        <div ref={viewportRef} className="overflow-hidden">
           <div
             ref={trackRef}
             className="flex transition-transform duration-700 ease-in-out will-change-transform"
             style={{ gap: `${GAP}px` }}
           >
             {shuffled.map((t, i) => (
-              <div key={i} style={{ width: cardWidth || "auto", flexShrink: 0 }}>
+              <div key={i} className="flex-shrink-0" style={{ width: cardWidth || "auto" }}>
                 <TestimonialCard t={t} />
               </div>
             ))}
