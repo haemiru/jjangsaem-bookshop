@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import Container from "@/components/layout/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { testimonials, Testimonial } from "@/data/testimonials";
@@ -46,8 +46,8 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-const STEP = 2; // 한 번에 넘기는 카드 수
-const INTERVAL = 4000; // ms
+const STEP = 2;
+const INTERVAL = 4000;
 
 export default function HomeTestimonialSection() {
   const shuffled = useMemo(() => shuffle(testimonials), []);
@@ -57,13 +57,19 @@ export default function HomeTestimonialSection() {
 
   const maxIndex = Math.max(0, shuffled.length - STEP);
 
+  const goNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + STEP > maxIndex ? 0 : prev + STEP));
+  }, [maxIndex]);
+
+  const goPrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - STEP < 0 ? maxIndex : prev - STEP));
+  }, [maxIndex]);
+
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + STEP > maxIndex ? 0 : prev + STEP));
-    }, INTERVAL);
+    const timer = setInterval(goNext, INTERVAL);
     return () => clearInterval(timer);
-  }, [paused, maxIndex]);
+  }, [paused, goNext]);
 
   useEffect(() => {
     const track = trackRef.current;
@@ -83,17 +89,42 @@ export default function HomeTestimonialSection() {
         />
       </Container>
       <div
-        className="overflow-hidden"
+        className="group relative px-4 sm:px-8"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={() => setPaused(true)}
         onTouchEnd={() => setPaused(false)}
       >
-        <div ref={trackRef} className="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
-          {shuffled.map((t, i) => (
-            <TestimonialCard key={i} t={t} />
-          ))}
+        {/* Left arrow */}
+        <button
+          onClick={goPrev}
+          aria-label="이전 후기"
+          className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/10 p-2 text-gray-600 backdrop-blur-sm transition-all hover:bg-black/20 hover:text-gray-900 sm:left-1 sm:p-3"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+
+        {/* Track */}
+        <div className="overflow-hidden">
+          <div ref={trackRef} className="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
+            {shuffled.map((t, i) => (
+              <TestimonialCard key={i} t={t} />
+            ))}
+          </div>
         </div>
+
+        {/* Right arrow */}
+        <button
+          onClick={goNext}
+          aria-label="다음 후기"
+          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/10 p-2 text-gray-600 backdrop-blur-sm transition-all hover:bg-black/20 hover:text-gray-900 sm:right-1 sm:p-3"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
       </div>
     </section>
   );
