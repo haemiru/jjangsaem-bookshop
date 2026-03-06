@@ -23,6 +23,7 @@ export default function TestimonialCarousel({
 
   const total = testimonials.length;
   const maxIndex = Math.max(0, total - VISIBLE);
+  const pageCount = maxIndex + 1;
 
   useEffect(() => {
     const update = () => {
@@ -36,11 +37,11 @@ export default function TestimonialCarousel({
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1 > maxIndex ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   }, [maxIndex]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 < 0 ? maxIndex : prev - 1));
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   }, [maxIndex]);
 
   useEffect(() => {
@@ -78,7 +79,7 @@ export default function TestimonialCarousel({
           </svg>
         </button>
 
-        {/* Viewport — ref here for width calculation */}
+        {/* Viewport */}
         <div ref={viewportRef} className="overflow-hidden">
           <div
             ref={trackRef}
@@ -126,9 +127,9 @@ export default function TestimonialCarousel({
         </button>
       </div>
 
-      {/* Dots */}
+      {/* Dots — one per page position, not per card */}
       <div className="mt-4 flex justify-center gap-2">
-        {testimonials.map((_, i) => (
+        {Array.from({ length: pageCount }).map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrentIndex(i)}
@@ -136,7 +137,7 @@ export default function TestimonialCarousel({
             style={{
               backgroundColor: i === currentIndex ? accentColor : "#e2e8f0",
             }}
-            aria-label={`후기 ${i + 1}`}
+            aria-label={`후기 페이지 ${i + 1}`}
           />
         ))}
       </div>
