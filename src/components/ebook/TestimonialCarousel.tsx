@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Testimonial } from "@/data/testimonials";
 
+const VISIBLE = 3;
+const GAP = 16;
+
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
   accentColor: string;
@@ -13,18 +16,32 @@ export default function TestimonialCarousel({
   accentColor,
 }: TestimonialCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(0);
 
   const total = testimonials.length;
+  const maxIndex = Math.max(0, total - VISIBLE);
+
+  useEffect(() => {
+    const update = () => {
+      if (!containerRef.current) return;
+      const w = containerRef.current.offsetWidth;
+      setCardWidth((w - GAP * (VISIBLE - 1)) / VISIBLE);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % total);
-  }, [total]);
+    setCurrentIndex((prev) => (prev + 1 > maxIndex ? 0 : prev + 1));
+  }, [maxIndex]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + total) % total);
-  }, [total]);
+    setCurrentIndex((prev) => (prev - 1 < 0 ? maxIndex : prev - 1));
+  }, [maxIndex]);
 
   useEffect(() => {
     if (paused) return;
@@ -33,14 +50,10 @@ export default function TestimonialCarousel({
   }, [paused, goNext]);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const card = track.children[0] as HTMLElement | undefined;
-    if (!card) return;
-    const gap = 16;
-    const offset = currentIndex * (card.offsetWidth + gap);
-    track.style.transform = `translateX(-${offset}px)`;
-  }, [currentIndex]);
+    if (!trackRef.current || cardWidth === 0) return;
+    const offset = currentIndex * (cardWidth + GAP);
+    trackRef.current.style.transform = `translateX(-${offset}px)`;
+  }, [currentIndex, cardWidth]);
 
   if (total === 0) return null;
 
@@ -48,6 +61,7 @@ export default function TestimonialCarousel({
     <section className="mt-16">
       <h2 className="mb-6 text-xl font-bold text-text-primary">독자 후기</h2>
       <div
+        ref={containerRef}
         className="group relative"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -69,12 +83,14 @@ export default function TestimonialCarousel({
         <div className="overflow-hidden">
           <div
             ref={trackRef}
-            className="flex gap-4 transition-transform duration-500 ease-in-out"
+            className="flex transition-transform duration-500 ease-in-out"
+            style={{ gap: `${GAP}px` }}
           >
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="w-[320px] flex-shrink-0 rounded-2xl border border-border bg-bg-primary p-6 sm:w-[380px]"
+                className="flex-shrink-0 rounded-2xl border border-border bg-bg-primary p-6"
+                style={{ width: cardWidth || "auto" }}
               >
                 <div className="mb-3 flex gap-1">
                   {Array.from({ length: t.rating }).map((_, j) => (
