@@ -20,7 +20,7 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   const bookTitle = ebook?.title ?? "";
 
   return (
-    <div className="w-[320px] flex-shrink-0 rounded-2xl border border-border bg-bg-primary p-5 sm:w-[360px]">
+    <div className="flex-shrink-0 rounded-2xl border border-border bg-bg-primary p-5">
       <div className="mb-2 flex items-center justify-between">
         <div className="flex gap-0.5">
           {Array.from({ length: t.rating }).map((_, j) => (
@@ -46,16 +46,33 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
+const VISIBLE = 3;
 const STEP = 2;
+const GAP = 16;
 const INTERVAL = 4000;
 
 export default function HomeTestimonialSection() {
   const shuffled = useMemo(() => shuffle(testimonials), []);
   const trackRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [cardWidth, setCardWidth] = useState(0);
 
-  const maxIndex = Math.max(0, shuffled.length - STEP);
+  const maxIndex = Math.max(0, shuffled.length - VISIBLE);
+
+  // Calculate card width based on container
+  useEffect(() => {
+    const update = () => {
+      if (!containerRef.current) return;
+      const containerWidth = containerRef.current.offsetWidth;
+      const totalGap = GAP * (VISIBLE - 1);
+      setCardWidth((containerWidth - totalGap) / VISIBLE);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   const goNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + STEP > maxIndex ? 0 : prev + STEP));
@@ -72,13 +89,10 @@ export default function HomeTestimonialSection() {
   }, [paused, goNext]);
 
   useEffect(() => {
-    const track = trackRef.current;
-    if (!track || !track.children[0]) return;
-    const card = track.children[0] as HTMLElement;
-    const gap = 16;
-    const offset = currentIndex * (card.offsetWidth + gap);
-    track.style.transform = `translateX(-${offset}px)`;
-  }, [currentIndex]);
+    if (!trackRef.current || cardWidth === 0) return;
+    const offset = currentIndex * (cardWidth + GAP);
+    trackRef.current.style.transform = `translateX(-${offset}px)`;
+  }, [currentIndex, cardWidth]);
 
   return (
     <section className="bg-bg-warm py-16 sm:py-20">
@@ -89,7 +103,8 @@ export default function HomeTestimonialSection() {
         />
       </Container>
       <div
-        className="group relative px-4 sm:px-8"
+        ref={containerRef}
+        className="group relative mx-auto max-w-6xl px-10 sm:px-14"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={() => setPaused(true)}
@@ -99,7 +114,7 @@ export default function HomeTestimonialSection() {
         <button
           onClick={goPrev}
           aria-label="이전 후기"
-          className="absolute left-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/10 p-2 text-gray-600 backdrop-blur-sm transition-all hover:bg-black/20 hover:text-gray-900 sm:left-1 sm:p-3"
+          className="absolute left-1 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/10 p-2 text-gray-600 backdrop-blur-sm transition-all hover:bg-black/20 hover:text-gray-900 sm:left-2 sm:p-3"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -108,9 +123,15 @@ export default function HomeTestimonialSection() {
 
         {/* Track */}
         <div className="overflow-hidden">
-          <div ref={trackRef} className="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
+          <div
+            ref={trackRef}
+            className="flex transition-transform duration-700 ease-in-out will-change-transform"
+            style={{ gap: `${GAP}px` }}
+          >
             {shuffled.map((t, i) => (
-              <TestimonialCard key={i} t={t} />
+              <div key={i} style={{ width: cardWidth || "auto", flexShrink: 0 }}>
+                <TestimonialCard t={t} />
+              </div>
             ))}
           </div>
         </div>
@@ -119,7 +140,7 @@ export default function HomeTestimonialSection() {
         <button
           onClick={goNext}
           aria-label="다음 후기"
-          className="absolute right-0 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/10 p-2 text-gray-600 backdrop-blur-sm transition-all hover:bg-black/20 hover:text-gray-900 sm:right-1 sm:p-3"
+          className="absolute right-1 top-1/2 z-10 -translate-y-1/2 rounded-full bg-black/10 p-2 text-gray-600 backdrop-blur-sm transition-all hover:bg-black/20 hover:text-gray-900 sm:right-2 sm:p-3"
         >
           <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
