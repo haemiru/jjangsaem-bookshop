@@ -17,7 +17,7 @@ export default function EbookHero({ ebook }: EbookHeroProps) {
           src={ebook.coverImage}
           alt={ebook.title}
           fill
-          className="object-cover"
+          className={ebook.coverHasText ? "object-contain" : "object-cover"}
           sizes="(max-width: 640px) 160px, 208px"
           priority
         />

@@ -84,7 +84,7 @@ export default function MyLibraryPage() {
                         src={ebook.coverImage}
                         alt={purchase.ebook_title}
                         fill
-                        className="object-cover"
+                        className={ebook.coverHasText ? "object-contain" : "object-cover"}
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       />
                       {!ebook.coverHasText && (
