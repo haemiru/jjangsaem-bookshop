@@ -520,7 +520,10 @@ export const blogPosts: BlogPost[] = [
     readTime: 7,
     publishedDate: "2026-03-05",
     coverColor: "#e17055",
+    coverImage: "/images/blog/parenting-guilt-relief-hero.png",
     content: `
+      <img src="/images/blog/parenting-guilt-relief-hero.png" alt="죄책감을 내려놓는 엄마의 따뜻한 수채화 일러스트" class="blog-hero-image" />
+
       <h2>당신만의 이야기가 아닙니다</h2>
       <p>새벽 2시, 아이를 겨우 재우고 누웠는데 잠이 오지 않습니다. "임신 때 커피를 마셔서 그런 걸까." "그때 바로 병원에 갔어야 했는데." 머릿속에서 과거 장면들이 끝없이 돌아갑니다. 발달지연 아동을 키우는 부모라면, 이 밤의 풍경이 낯설지 않을 겁니다.</p>
       <p>발달지연 부모의 죄책감은 누구나 겪지만, 아무도 쉽게 꺼내지 못하는 감정입니다. 하지만 이 감정의 정체를 알면, 조금씩 내려놓을 수 있어요.</p>
@@ -594,7 +597,10 @@ export const blogPosts: BlogPost[] = [
     readTime: 7,
     publishedDate: "2026-03-05",
     coverColor: "#e17055",
+    coverImage: "/images/blog/emotion-management-hero.png",
     content: `
+      <img src="/images/blog/emotion-management-hero.png" alt="감정 관리를 위해 일기를 쓰는 엄마의 수채화 일러스트" class="blog-hero-image" />
+
       <h2>감정을 관리한다는 것은 억누르는 것이 아닙니다</h2>
       <p>치료실 유리문 너머로 아이가 보입니다. 치료사가 카드를 보여주는데 아이는 자꾸 고개를 돌립니다. 옆자리 엄마가 통화합니다. "우리 아이 3개월 만에 두 단어 문장 했대!" 자기도 모르게 주먹을 꽉 쥡니다. 우리 아이는 6개월째 이 치료를 받고 있는데.</p>
       <p>5살 도윤이 엄마는 치료가 끝나고 엘리베이터 문이 닫히자마자 눈물이 흘렀습니다. 아이가 올려다보자 재빨리 닦으며 웃었어요. "울면 안 돼. 지금 울면 안 돼." 이런 날이 6개월째 반복되고 있었습니다.</p>
@@ -686,7 +692,10 @@ export const blogPosts: BlogPost[] = [
     readTime: 7,
     publishedDate: "2026-03-05",
     coverColor: "#e17055",
+    coverImage: "/images/blog/growing-together-hero.png",
     content: `
+      <img src="/images/blog/growing-together-hero.png" alt="아이와 함께 걸어가는 부모의 따뜻한 수채화 일러스트" class="blog-hero-image" />
+
       <h2>블록 세 개에 담긴 3개월의 이야기</h2>
       <p>평범한 화요일 저녁이었습니다. 저녁을 준비하는데, 아이가 거실에서 블록을 쌓고 있었어요. 하나 올리고 무너뜨리기를 3개월째 반복하고 있었습니다. 그런데 그날, 아이가 블록을 하나 올렸습니다. 또 하나. 그리고 세 번째 블록을 올렸습니다. 아이가 고개를 들어 웃었어요. 국자를 든 채로 눈물이 흘렀습니다. 기쁨의 눈물이었습니다.</p>
       <p>블록 세 개. 다른 집에서는 아무것도 아닌 일입니다. 하지만 발달지연 아동을 키우는 부모에게 이 순간은 <strong>3개월의 시간이 응축된 기적</strong>이에요.</p>
