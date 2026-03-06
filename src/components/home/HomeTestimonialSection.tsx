@@ -46,37 +46,33 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
+const STEP = 2; // 한 번에 넘기는 카드 수
+const INTERVAL = 4000; // ms
+
 export default function HomeTestimonialSection() {
   const shuffled = useMemo(() => shuffle(testimonials), []);
-  // Duplicate for seamless infinite loop
-  const items = useMemo(() => [...shuffled, ...shuffled], [shuffled]);
   const trackRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+
+  const maxIndex = Math.max(0, shuffled.length - STEP);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = setInterval(() => {
+      setCurrentIndex((prev) => (prev + STEP > maxIndex ? 0 : prev + STEP));
+    }, INTERVAL);
+    return () => clearInterval(timer);
+  }, [paused, maxIndex]);
 
   useEffect(() => {
     const track = trackRef.current;
-    if (!track) return;
-
-    let animationId: number;
-    let position = 0;
-    const speed = 0.5; // px per frame
-
-    const animate = () => {
-      if (!paused) {
-        position += speed;
-        // Reset when first set is fully scrolled
-        const halfWidth = track.scrollWidth / 2;
-        if (position >= halfWidth) {
-          position = 0;
-        }
-        track.style.transform = `translateX(-${position}px)`;
-      }
-      animationId = requestAnimationFrame(animate);
-    };
-
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [paused]);
+    if (!track || !track.children[0]) return;
+    const card = track.children[0] as HTMLElement;
+    const gap = 16;
+    const offset = currentIndex * (card.offsetWidth + gap);
+    track.style.transform = `translateX(-${offset}px)`;
+  }, [currentIndex]);
 
   return (
     <section className="bg-bg-warm py-16 sm:py-20">
@@ -93,8 +89,8 @@ export default function HomeTestimonialSection() {
         onTouchStart={() => setPaused(true)}
         onTouchEnd={() => setPaused(false)}
       >
-        <div ref={trackRef} className="flex gap-4 will-change-transform">
-          {items.map((t, i) => (
+        <div ref={trackRef} className="flex gap-4 transition-transform duration-700 ease-in-out will-change-transform">
+          {shuffled.map((t, i) => (
             <TestimonialCard key={i} t={t} />
           ))}
         </div>
