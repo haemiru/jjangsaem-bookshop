@@ -117,9 +117,9 @@ export default function Footer() {
         <div className="mt-10 border-t border-white/10 pt-6">
           <div className="text-xs leading-relaxed text-gray-500">
             <p>
-              상호: 킁킁스토어 | 대표: 장지예 | 사업자등록번호: 593-33-01401{" "}
+              상호: 강남상회 | 대표: 하성재 | 사업자등록번호: 893-19-02019{" "}
               <a
-                href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=5933301401"
+                href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=8931902019"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white"
@@ -128,12 +128,12 @@ export default function Footer() {
               </a>
             </p>
             <p>
-              통신판매업 신고번호: 제2024-서울강남-04210호 | 주소: 서울시 강남구 논현로8길 10-4, 1층
+              통신판매업 신고번호: 제2025-충북청주-1318호 | 주소: 충청북도 청주시 흥덕구 진재로41, 3층 A220호
             </p>
             <p>
               이메일:{" "}
-              <a href="mailto:gggcp1234@gmail.com" className="text-gray-400 hover:text-white">
-                gggcp1234@gmail.com
+              <a href="mailto:junominu@gmail.com" className="text-gray-400 hover:text-white">
+                junominu@gmail.com
               </a>{" "}
               | 전화: 010-5776-3325
             </p>

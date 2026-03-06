@@ -18,7 +18,7 @@ export default function TermsPage() {
           <section>
             <h2 className="mb-3 text-lg font-bold text-text-primary">제1조 (목적)</h2>
             <p>
-              이 약관은 킁킁스토어(이하 &quot;회사&quot;)가 운영하는 &quot;짱샘의 치유책방&quot;
+              이 약관은 강남상회(이하 &quot;회사&quot;)가 운영하는 &quot;짱샘의 치유책방&quot;
               (이하 &quot;사이트&quot;)에서 제공하는 디지털 콘텐츠 판매 및 관련 서비스의
               이용 조건과 절차, 회사와 이용자의 권리·의무 및 책임 사항을 규정함을 목적으로 합니다.
             </p>

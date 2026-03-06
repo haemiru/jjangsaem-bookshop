@@ -16,7 +16,7 @@ export default function PrivacyPage() {
 
         <div className="space-y-8 text-sm leading-relaxed text-text-secondary">
           <p>
-            킁킁스토어(이하 &quot;회사&quot;)는 「개인정보 보호법」에 따라 이용자의
+            강남상회(이하 &quot;회사&quot;)는 「개인정보 보호법」에 따라 이용자의
             개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록
             다음과 같이 개인정보처리방침을 수립·공개합니다.
           </p>
@@ -99,7 +99,7 @@ export default function PrivacyPage() {
             <ul className="list-disc space-y-1 pl-5">
               <li>이용자는 언제든지 자신의 개인정보에 대해 열람, 수정, 삭제, 처리 정지를 요청할 수 있습니다.</li>
               <li>뉴스레터 수신 거부는 이메일 하단의 구독 해지 링크를 통해 가능합니다.</li>
-              <li>위 요청은 이메일(gggcp1234@gmail.com)로 연락해 주시기 바랍니다.</li>
+              <li>위 요청은 이메일(junominu@gmail.com)로 연락해 주시기 바랍니다.</li>
             </ul>
           </section>
 
@@ -115,8 +115,8 @@ export default function PrivacyPage() {
           <section>
             <h2 className="mb-3 text-lg font-bold text-text-primary">8. 개인정보 보호책임자</h2>
             <ul className="list-none space-y-1">
-              <li>성명: 장지예</li>
-              <li>이메일: gggcp1234@gmail.com</li>
+              <li>성명: 하성재</li>
+              <li>이메일: junominu@gmail.com</li>
               <li>전화: 010-5776-3325</li>
             </ul>
           </section>

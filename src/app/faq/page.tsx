@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "전자책 내용에 대해 질문이 있으면 어디로 문의하나요?",
     answer:
-      "이메일(gggcp1234@gmail.com)로 문의해 주시면 확인 후 답변드리겠습니다.",
+      "이메일(junominu@gmail.com)로 문의해 주시면 확인 후 답변드리겠습니다.",
   },
   {
     question: "뉴스레터 구독은 무료인가요?",
@@ -70,7 +70,7 @@ export default function FaqPage() {
         </h1>
         <p className="mb-8 text-text-muted">
           궁금한 점이 해결되지 않으셨다면{" "}
-          <a href="mailto:gggcp1234@gmail.com" className="text-primary hover:underline">
+          <a href="mailto:junominu@gmail.com" className="text-primary hover:underline">
             이메일로 문의
           </a>
           해 주세요.

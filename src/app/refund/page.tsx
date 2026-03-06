@@ -72,7 +72,7 @@ export default function RefundPage() {
             <h2 className="mb-3 text-lg font-bold text-text-primary">4. 환불 요청 연락처</h2>
             <div className="rounded-lg bg-bg-secondary p-4">
               <ul className="list-none space-y-1">
-                <li>이메일: <a href="mailto:gggcp1234@gmail.com" className="text-primary hover:underline">gggcp1234@gmail.com</a></li>
+                <li>이메일: <a href="mailto:junominu@gmail.com" className="text-primary hover:underline">junominu@gmail.com</a></li>
                 <li>전화: 010-5776-3325</li>
               </ul>
               <p className="mt-2 text-xs text-text-muted">
