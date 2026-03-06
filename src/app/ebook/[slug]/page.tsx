@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Container from "@/components/layout/Container";
 import EbookHero from "@/components/ebook/EbookHero";
 import TocSection from "@/components/ebook/TocSection";
@@ -94,6 +95,7 @@ export default async function EbookDetailPage({ params }: PageProps) {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {ebooks
                 .filter((b) => b.slug !== ebook.slug)
+                .slice(0, 4)
                 .map((b) => (
                   <a
                     key={b.slug}
@@ -122,6 +124,16 @@ export default async function EbookDetailPage({ params }: PageProps) {
                   </a>
                 ))}
             </div>
+            {ebooks.filter((b) => b.slug !== ebook.slug).length > 4 && (
+              <div className="mt-8 text-center">
+                <Link
+                  href="/ebook"
+                  className="inline-block rounded-full border-2 border-primary px-6 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+                >
+                  전체 보기
+                </Link>
+              </div>
+            )}
           </div>
         </Container>
       </div>
