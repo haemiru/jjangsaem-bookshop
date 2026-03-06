@@ -13,7 +13,7 @@ export default function BlogPreviewSection() {
           subtitle="AI와 바이브 코딩에 관한 유용한 글"
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {blogPosts.map((post) => (
+          {[...blogPosts].sort((a, b) => b.publishedDate.localeCompare(a.publishedDate)).slice(0, 3).map((post) => (
             <BlogCard key={post.slug} post={post} />
           ))}
         </div>
