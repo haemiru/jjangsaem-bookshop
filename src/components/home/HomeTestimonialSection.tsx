@@ -60,20 +60,7 @@ export default function HomeTestimonialSection() {
   const [cardWidth, setCardWidth] = useState(0);
 
   const maxIndex = Math.max(0, shuffled.length - VISIBLE);
-  // Step-based page positions: 0, 2, 4, 6, ...
-  const pages = useMemo(() => {
-    const p: number[] = [];
-    for (let i = 0; i <= maxIndex; i += STEP) p.push(i);
-    // Ensure last page (maxIndex) is included
-    if (p[p.length - 1] !== maxIndex) p.push(maxIndex);
-    return p;
-  }, [maxIndex]);
-
-  const currentPage = pages.findIndex(
-    (p, i) => currentIndex >= p && (i === pages.length - 1 || currentIndex < pages[i + 1])
-  );
-
-  useEffect(() => {
+useEffect(() => {
     const update = () => {
       if (!viewportRef.current) return;
       const w = viewportRef.current.offsetWidth;
@@ -157,19 +144,6 @@ export default function HomeTestimonialSection() {
         </button>
       </div>
 
-      {/* Dots — one per page */}
-      <div className="mt-4 flex justify-center gap-1.5">
-        {pages.map((pageIndex, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentIndex(pageIndex)}
-            className={`h-2 w-2 rounded-full transition-colors ${
-              i === currentPage ? "bg-primary" : "bg-gray-300"
-            }`}
-            aria-label={`후기 페이지 ${i + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 }

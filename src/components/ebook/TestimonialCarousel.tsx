@@ -23,9 +23,7 @@ export default function TestimonialCarousel({
 
   const total = testimonials.length;
   const maxIndex = Math.max(0, total - VISIBLE);
-  const pageCount = maxIndex + 1;
-
-  useEffect(() => {
+useEffect(() => {
     const update = () => {
       if (!viewportRef.current) return;
       const w = viewportRef.current.offsetWidth;
@@ -127,20 +125,6 @@ export default function TestimonialCarousel({
         </button>
       </div>
 
-      {/* Dots — one per page position, not per card */}
-      <div className="mt-4 flex justify-center gap-2">
-        {Array.from({ length: pageCount }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentIndex(i)}
-            className="h-2 w-2 rounded-full transition-colors"
-            style={{
-              backgroundColor: i === currentIndex ? accentColor : "#e2e8f0",
-            }}
-            aria-label={`후기 페이지 ${i + 1}`}
-          />
-        ))}
-      </div>
     </section>
   );
 }
