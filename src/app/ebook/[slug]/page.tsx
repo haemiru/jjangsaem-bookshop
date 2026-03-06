@@ -7,6 +7,8 @@ import TocSection from "@/components/ebook/TocSection";
 import PurchaseCard from "@/components/ebook/PurchaseCard";
 import AuthorCard from "@/components/ebook/AuthorCard";
 import { ebooks, getEbookBySlug, getAllSlugs } from "@/data/ebooks";
+import { getTestimonialsBySlug } from "@/data/testimonials";
+import TestimonialCarousel from "@/components/ebook/TestimonialCarousel";
 import { generateBookSchema } from "@/lib/schema";
 
 interface PageProps {
@@ -44,6 +46,7 @@ export default async function EbookDetailPage({ params }: PageProps) {
   }
 
   const schema = generateBookSchema(ebook);
+  const bookTestimonials = getTestimonialsBySlug(ebook.slug);
 
   return (
     <>
@@ -75,6 +78,13 @@ export default async function EbookDetailPage({ params }: PageProps) {
               <PurchaseCard ebook={ebook} />
             </div>
           </div>
+
+          {bookTestimonials.length > 0 && (
+            <TestimonialCarousel
+              testimonials={bookTestimonials}
+              accentColor={ebook.colors.primary}
+            />
+          )}
 
           {/* Related books */}
           <div className="mt-16">
