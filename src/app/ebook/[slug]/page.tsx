@@ -8,6 +8,8 @@ import TocSection from "@/components/ebook/TocSection";
 import PurchaseCard from "@/components/ebook/PurchaseCard";
 import AuthorCard from "@/components/ebook/AuthorCard";
 import { ebooks, getEbookBySlug, getAllSlugs } from "@/data/ebooks";
+import { blogPosts } from "@/data/blogPosts";
+import BlogCard from "@/components/blog/BlogCard";
 import { getTestimonialsBySlug } from "@/data/testimonials";
 import TestimonialCarousel from "@/components/ebook/TestimonialCarousel";
 import { generateBookSchema } from "@/lib/schema";
@@ -139,6 +141,36 @@ export default async function EbookDetailPage({ params }: PageProps) {
               </div>
             )}
           </div>
+          {/* Related blog posts */}
+          {(() => {
+            const related = blogPosts
+              .filter((p) => p.category === ebook.category)
+              .sort((a, b) => b.publishedDate.localeCompare(a.publishedDate));
+            if (related.length === 0) return null;
+            const displayed = related.slice(0, 3);
+            return (
+              <div className="mt-16">
+                <h2 className="mb-6 text-xl font-bold text-text-primary">
+                  관련 블로그
+                </h2>
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {displayed.map((post) => (
+                    <BlogCard key={post.slug} post={post} />
+                  ))}
+                </div>
+                {related.length > 3 && (
+                  <div className="mt-8 text-center">
+                    <Link
+                      href="/blog"
+                      className="inline-block rounded-full border-2 border-primary px-6 py-2.5 text-sm font-semibold text-primary transition-colors hover:bg-primary hover:text-white"
+                    >
+                      블로그 더보기
+                    </Link>
+                  </div>
+                )}
+              </div>
+            );
+          })()}
         </Container>
       </div>
     </>
