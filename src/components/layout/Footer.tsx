@@ -42,10 +42,11 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="#"
-                aria-label="카카오톡 채널 (준비 중)"
+                href="http://pf.kakao.com/_synZX"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="카카오톡 채널"
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
-                title="카카오톡 채널 준비 중"
               >
                 <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.72 1.794 5.11 4.504 6.458-.199.744-.72 2.696-.826 3.112-.13.516.19.51.398.371.164-.109 2.609-1.77 3.668-2.49.737.11 1.49.167 2.256.167 5.523 0 10-3.463 10-7.618C22 6.463 17.523 3 12 3z" />
