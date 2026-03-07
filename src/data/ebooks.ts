@@ -72,7 +72,7 @@ export const ebooks: Ebook[] = [
     ],
     fileKey: "healing-parent/book.pdf",
     purchaseUrl: "https://kmong.com",
-    pageCount: 150,
+    pageCount: 96,
     publishedDate: "2026-01-15",
   },
   {
@@ -148,7 +148,7 @@ export const ebooks: Ebook[] = [
     ],
     fileKey: "sensory-sleep/book.pdf",
     purchaseUrl: "https://kmong.com",
-    pageCount: 160,
+    pageCount: 98,
     publishedDate: "2026-01-01",
   },
   {
@@ -435,7 +435,7 @@ export const ebooks: Ebook[] = [
     ],
     fileKey: "breath-first/book.pdf",
     purchaseUrl: "https://kmong.com",
-    pageCount: 34,
+    pageCount: 82,
     publishedDate: "2026-03-07",
   },
   {
@@ -526,7 +526,7 @@ export const ebooks: Ebook[] = [
     ],
     fileKey: "golden-time-breathing/book.pdf",
     purchaseUrl: "https://kmong.com",
-    pageCount: 24,
+    pageCount: 183,
     publishedDate: "2026-03-07",
   },
 ];
