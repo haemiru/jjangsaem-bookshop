@@ -93,10 +93,14 @@ export default async function EbookDetailPage({ params }: PageProps) {
               다른 전자책도 살펴보세요
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {ebooks
-                .filter((b) => b.slug !== ebook.slug)
-                .slice(0, 4)
-                .map((b) => (
+              {(() => {
+                const others = ebooks.filter((b) => b.slug !== ebook.slug);
+                const sameCategory = others.filter((b) => b.category === ebook.category);
+                const rest = others
+                  .filter((b) => b.category !== ebook.category)
+                  .sort((a, b) => b.publishedDate.localeCompare(a.publishedDate));
+                return [...sameCategory, ...rest].slice(0, 4);
+              })().map((b) => (
                   <a
                     key={b.slug}
                     href={`/ebook/${b.slug}`}
