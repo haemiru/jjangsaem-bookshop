@@ -46,10 +46,15 @@ function TestimonialCard({ t }: { t: Testimonial }) {
   );
 }
 
-const VISIBLE = 3;
-const STEP = 2;
 const GAP = 16;
 const INTERVAL = 4000;
+
+function getVisible() {
+  if (typeof window === "undefined") return 3;
+  if (window.innerWidth < 640) return 1;
+  if (window.innerWidth < 1024) return 2;
+  return 3;
+}
 
 export default function HomeTestimonialSection() {
   const shuffled = useMemo(() => shuffle(testimonials), []);
@@ -58,13 +63,22 @@ export default function HomeTestimonialSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
+  const [visible, setVisible] = useState(3);
 
-  const maxIndex = Math.max(0, shuffled.length - VISIBLE);
-useEffect(() => {
+  const step = Math.max(1, Math.min(2, visible));
+  const maxIndex = Math.max(0, shuffled.length - visible);
+
+  useEffect(() => {
+    if (currentIndex > maxIndex) setCurrentIndex(maxIndex);
+  }, [maxIndex, currentIndex]);
+
+  useEffect(() => {
     const update = () => {
       if (!viewportRef.current) return;
+      const v = getVisible();
+      setVisible(v);
       const w = viewportRef.current.offsetWidth;
-      setCardWidth((w - GAP * (VISIBLE - 1)) / VISIBLE);
+      setCardWidth((w - GAP * (v - 1)) / v);
     };
     update();
     window.addEventListener("resize", update);
@@ -72,12 +86,12 @@ useEffect(() => {
   }, []);
 
   const goNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + STEP > maxIndex ? 0 : prev + STEP));
-  }, [maxIndex]);
+    setCurrentIndex((prev) => (prev + step > maxIndex ? 0 : prev + step));
+  }, [maxIndex, step]);
 
   const goPrev = useCallback(() => {
-    setCurrentIndex((prev) => (prev - STEP < 0 ? maxIndex : prev - STEP));
-  }, [maxIndex]);
+    setCurrentIndex((prev) => (prev - step < 0 ? maxIndex : prev - step));
+  }, [maxIndex, step]);
 
   useEffect(() => {
     if (paused) return;

@@ -3,8 +3,14 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Testimonial } from "@/data/testimonials";
 
-const VISIBLE = 3;
 const GAP = 16;
+
+function getVisible() {
+  if (typeof window === "undefined") return 3;
+  if (window.innerWidth < 640) return 1;
+  if (window.innerWidth < 1024) return 2;
+  return 3;
+}
 
 interface TestimonialCarouselProps {
   testimonials: Testimonial[];
@@ -20,14 +26,22 @@ export default function TestimonialCarousel({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState(0);
+  const [visible, setVisible] = useState(3);
 
   const total = testimonials.length;
-  const maxIndex = Math.max(0, total - VISIBLE);
-useEffect(() => {
+  const maxIndex = Math.max(0, total - visible);
+
+  useEffect(() => {
+    if (currentIndex > maxIndex) setCurrentIndex(maxIndex);
+  }, [maxIndex, currentIndex]);
+
+  useEffect(() => {
     const update = () => {
       if (!viewportRef.current) return;
+      const v = getVisible();
+      setVisible(v);
       const w = viewportRef.current.offsetWidth;
-      setCardWidth((w - GAP * (VISIBLE - 1)) / VISIBLE);
+      setCardWidth((w - GAP * (v - 1)) / v);
     };
     update();
     window.addEventListener("resize", update);
