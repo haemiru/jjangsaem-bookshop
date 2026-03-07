@@ -885,9 +885,10 @@ export const blogPosts: BlogPost[] = [
       <p>아이를 사랑하기에 치료를 하나라도 더 시키고 싶은 마음, 충분히 이해합니다. 하지만 때로는 멈추고 바라보는 것이 더 큰 도움이 될 수 있어요. 아이의 숨이 편해지면, 다른 치료들도 그 위에서 더 잘 작동합니다.</p>
 
       <div class="blog-cta">
-        <strong>25년 임상 경험을 바탕으로 쓴 호흡 안내서</strong>
-        <p>구강호흡 관찰부터 가정 실천법, 보호자 셀프 케어까지 체계적으로 안내합니다.</p>
-        <a href="/ebook/breath-first">아이를 고치기 전에 숨부터 봅니다 살펴보기</a>
+        <p class="blog-cta-text">구강호흡 관찰부터 가정 실천법까지 궁금하다면</p>
+        <a href="/ebook/breath-first" class="blog-cta-button" style="background-color: #5B7B9A;">
+          『아이를 고치기 전에 숨부터 봅니다』 전자책 살펴보기 →
+        </a>
       </div>
 
       <div class="blog-hashtags">
@@ -994,9 +995,10 @@ export const blogPosts: BlogPost[] = [
       <p>아이의 숨은 느껴지지 않아도, 심장은 거짓말을 하지 않습니다. 오늘 밤 아이가 잠든 후, 손가락에 펄스옥시미터를 끼워보세요. 그 작은 숫자가 아이의 호흡에 대한 첫 번째 단서가 됩니다.</p>
 
       <div class="blog-cta">
-        <strong>25년 임상 경험을 담은 호흡 실전 가이드</strong>
-        <p>심박수 기반 호흡 평가부터 비강 관리, 연령별 호흡 실습까지 체계적으로 안내합니다.</p>
-        <a href="/ebook/golden-time-breathing">성장하는 골든타임을 위한 호흡의 비밀 살펴보기</a>
+        <p class="blog-cta-text">심박수 기반 호흡 평가부터 실전 훈련까지 궁금하다면</p>
+        <a href="/ebook/golden-time-breathing" class="blog-cta-button" style="background-color: #E8A87C;">
+          『성장하는 골든타임을 위한 호흡의 비밀』 전자책 살펴보기 →
+        </a>
       </div>
 
       <div class="blog-hashtags">
@@ -1107,9 +1109,10 @@ export const blogPosts: BlogPost[] = [
       <p>코는 호흡의 관문입니다. 이 관문이 막혀 있으면 아무리 좋은 호흡 훈련도 효과를 발휘할 수 없어요. 오늘 밤 아이가 잠든 후, 코 아래에 손가락을 대어보세요. 양쪽 코에서 공기가 고르게 나오고 있는지 확인해 보세요. 그 작은 확인이 호흡 관리의 시작입니다.</p>
 
       <div class="blog-cta">
-        <strong>발달장애 아동의 비강 관리부터 호흡 실전 훈련까지</strong>
-        <p>25년 임상 경험을 바탕으로 코막힘 대응, 구강 테이프 사용법, 연령별 호흡 실습을 안내합니다.</p>
-        <a href="/ebook/golden-time-breathing">성장하는 골든타임을 위한 호흡의 비밀 살펴보기</a>
+        <p class="blog-cta-text">비강 관리부터 호흡 실전 훈련까지 궁금하다면</p>
+        <a href="/ebook/golden-time-breathing" class="blog-cta-button" style="background-color: #E8A87C;">
+          『성장하는 골든타임을 위한 호흡의 비밀』 전자책 살펴보기 →
+        </a>
       </div>
 
       <div class="blog-hashtags">
