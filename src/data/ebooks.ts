@@ -10,7 +10,7 @@ export const ebooks: Ebook[] = [
       "발달지연 아동 부모를 위한 내면 치유 가이드. 죄책감, 번아웃, 부부 갈등 등 양육 과정에서 겪는 심리적 어려움을 따뜻하게 다루며, 부모 스스로를 돌보는 실천법을 제시합니다.",
     price: 5500,
     originalPrice: 9900,
-    category: "부모 치유",
+    category: "치유",
     colorKey: "book-healing",
     colors: {
       primary: "#e17055",
@@ -84,7 +84,7 @@ export const ebooks: Ebook[] = [
       "발달장애 아동을 위한 후각·호흡 기반 수면 훈련 프로그램. 4주 간의 단계별 훈련 가이드와 사례 연구, 전문가 조언을 포함합니다.",
     price: 9900,
     originalPrice: 14000,
-    category: "수면 훈련",
+    category: "수면",
     colorKey: "book-sleep",
     colors: {
       primary: "#9b89b3",
@@ -160,7 +160,7 @@ export const ebooks: Ebook[] = [
       "후각 훈련에 필요한 키트를 직접 개발하고 구성하는 실전 가이드. 향료 선택, 안전 기준, 농도 조절, 키트 패키징까지 후각 키트 제작의 전 과정을 다룹니다.",
     price: 38000,
     originalPrice: 48000,
-    category: "후각 키트",
+    category: "후각",
     colorKey: "book-kit",
     colors: {
       primary: "#00b894",
@@ -228,7 +228,7 @@ export const ebooks: Ebook[] = [
       "후각 발달의 과학적 원리와 실전 적용법을 담은 가이드. 연령별·발달 단계별 후각 자극 프로그램 설계, 평가 방법, 가정 내 적용 전략을 포함합니다.",
     price: 29000,
     originalPrice: 38000,
-    category: "후각 발달",
+    category: "후각",
     colorKey: "book-development",
     colors: {
       primary: "#6c5ce7",
@@ -311,7 +311,7 @@ export const ebooks: Ebook[] = [
       "후각 훈련의 신경과학적 근거와 원리를 체계적으로 정리한 전자책. 후각 신경 가소성, 훈련 효과의 과학적 증거, 다양한 훈련 프로토콜 비교 분석을 다룹니다.",
     price: 6600,
     originalPrice: 10900,
-    category: "후각 훈련",
+    category: "후각",
     colorKey: "book-training",
     colors: {
       primary: "#2C5F8D",
@@ -370,7 +370,7 @@ export const ebooks: Ebook[] = [
       "25년 경력의 소아 물리치료사가 전하는 발달장애 아동 호흡 안내서. 구강호흡과 과호흡이 아이의 뇌와 정서에 미치는 영향을 설명하고, 치료보다 먼저 숨을 살펴야 하는 이유와 가정에서 실천할 수 있는 호흡 관리법을 제시합니다.",
     price: 9900,
     originalPrice: 18900,
-    category: "호흡 이해",
+    category: "호흡",
     colorKey: "book-breath",
     colors: {
       primary: "#5B7B9A",
@@ -447,7 +447,7 @@ export const ebooks: Ebook[] = [
       "발달장애 아동의 코 호흡 훈련 실전 가이드. 숨이 무너지면 어떤 재활도 오래 가지 않는다는 임상 경험을 바탕으로, 심박수 기반 호흡 상태 평가, 비강 관리, 연령별 호흡 실습까지 체계적으로 안내합니다.",
     price: 38000,
     originalPrice: 69000,
-    category: "호흡 실전",
+    category: "호흡",
     colorKey: "book-golden",
     colors: {
       primary: "#E8A87C",

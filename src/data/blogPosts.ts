@@ -6,7 +6,7 @@ export const blogPosts: BlogPost[] = [
     title: "후각 훈련 방법: 발달장애 아동도 집에서 시작하는 3단계 가이드",
     excerpt:
       "후각 훈련의 원리와 발달장애 아동에게 미치는 긍정적 효과를 쉽게 풀어 설명합니다. 가정에서 시작하는 방법도 함께 안내합니다.",
-    category: "후각 훈련",
+    category: "후각",
     readTime: 8,
     publishedDate: "2026-02-20",
     coverColor: "#2C5F8D",
@@ -102,7 +102,7 @@ export const blogPosts: BlogPost[] = [
     title: "발달장애 아동 수면 훈련: 향기와 호흡으로 만드는 4주 수면 루틴",
     excerpt:
       "수면에 어려움을 겪는 발달장애 아동을 위한 4주 수면 훈련 프로그램의 핵심 내용을 미리 살펴봅니다.",
-    category: "수면 훈련",
+    category: "수면",
     readTime: 8,
     publishedDate: "2026-02-15",
     coverColor: "#9b89b3",
@@ -207,7 +207,7 @@ export const blogPosts: BlogPost[] = [
     title: "발달지연 아동 부모의 번아웃, 어떻게 극복할까?",
     excerpt:
       "양육 과정에서 쌓이는 죄책감과 번아웃을 인식하고, 스스로를 돌보는 구체적인 방법을 소개합니다.",
-    category: "부모 치유",
+    category: "치유",
     readTime: 7,
     publishedDate: "2026-02-10",
     coverColor: "#e17055",
@@ -344,7 +344,7 @@ export const blogPosts: BlogPost[] = [
     title: "후각 키트 만들기: 가정에서 안전하게 구성하는 실전 가이드",
     excerpt:
       "전문 장비 없이도 가정에서 안전하게 만들 수 있는 후각 훈련 키트 구성법과 활용 팁을 소개합니다.",
-    category: "후각 키트",
+    category: "후각",
     readTime: 8,
     publishedDate: "2026-02-05",
     coverColor: "#00b894",
@@ -428,7 +428,7 @@ export const blogPosts: BlogPost[] = [
     title: "아이의 후각 발달, 왜 중요할까? 연령별 자극 방법 총정리",
     excerpt:
       "후각 발달이 아이의 인지·정서 성장에 미치는 영향과 연령별 후각 자극 방법을 알아봅니다.",
-    category: "후각 발달",
+    category: "후각",
     readTime: 8,
     publishedDate: "2026-02-01",
     coverColor: "#6c5ce7",
@@ -516,7 +516,7 @@ export const blogPosts: BlogPost[] = [
     title: "발달지연 부모 죄책감, 내려놓는 5가지 실천법",
     excerpt:
       "발달지연 아동 부모가 겪는 죄책감의 3가지 유형과 원인을 알아보고, 오늘부터 실천할 수 있는 5가지 내려놓기 방법을 안내합니다.",
-    category: "부모 치유",
+    category: "치유",
     readTime: 7,
     publishedDate: "2026-03-05",
     coverColor: "#e17055",
@@ -593,7 +593,7 @@ export const blogPosts: BlogPost[] = [
     title: "양육 스트레스 해소법: 발달지연 부모를 위한 4가지 감정 관리 전략",
     excerpt:
       "발달지연 아동 부모가 겪는 감정 소진의 원인과 신호를 알아보고, 감정을 억누르지 않으면서 다루는 4가지 양육 스트레스 해소법을 안내합니다.",
-    category: "부모 치유",
+    category: "치유",
     readTime: 7,
     publishedDate: "2026-03-05",
     coverColor: "#e17055",
@@ -688,7 +688,7 @@ export const blogPosts: BlogPost[] = [
     title: "발달지연 아이와 함께 성장하는 부모, 작은 진전이 만드는 큰 변화",
     excerpt:
       "발달지연 아동 부모가 아이의 작은 진전에서 성장을 발견하고, 함께 피어나는 양육의 의미를 되찾는 실천법과 사례를 안내합니다.",
-    category: "부모 치유",
+    category: "치유",
     readTime: 7,
     publishedDate: "2026-03-05",
     coverColor: "#e17055",
@@ -768,7 +768,7 @@ export const blogPosts: BlogPost[] = [
     title: "아이 구강호흡, 치료보다 먼저 확인해야 할 5가지 신호",
     excerpt:
       "치료를 많이 받아도 나아지지 않는 아이들의 공통점은 '숨이 불편한 것'이었습니다. 구강호흡의 위험 신호 5가지와 가정에서 바로 시작할 수 있는 관찰법을 안내합니다.",
-    category: "호흡 이해",
+    category: "호흡",
     readTime: 8,
     publishedDate: "2026-03-07",
     coverColor: "#5B7B9A",
@@ -904,7 +904,7 @@ export const blogPosts: BlogPost[] = [
     title: "아이 심박수로 호흡 상태 확인하는 법: 가정에서 할 수 있는 가이드",
     excerpt:
       "심박수는 아이의 호흡 상태를 가장 객관적으로 보여주는 지표입니다. 연령별 정상 범위와 가정에서 측정하는 3가지 방법, 2주간 기록으로 패턴을 찾는 법을 안내합니다.",
-    category: "호흡 실전",
+    category: "호흡",
     readTime: 9,
     publishedDate: "2026-03-07",
     coverColor: "#E8A87C",
@@ -1013,7 +1013,7 @@ export const blogPosts: BlogPost[] = [
     title: "아이 코막힘, 보이지 않는 80%를 찾는 법",
     excerpt:
       "코막힘의 80%는 눈에 보이지 않습니다. 숨겨진 코막힘의 8가지 간접 징후와 비강 세척 단계별 가이드, 전문가 상담이 필요한 시점을 안내합니다.",
-    category: "호흡 실전",
+    category: "호흡",
     readTime: 8,
     publishedDate: "2026-03-07",
     coverColor: "#E8A87C",
