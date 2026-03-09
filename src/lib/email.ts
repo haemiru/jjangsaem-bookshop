@@ -3,11 +3,11 @@ import type { Ebook } from "@/types/ebook";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const BASE_URL = "https://jjangsaem-bookshop.vercel.app";
+const BASE_URL = "https://jjangsaem.com";
 
 export async function sendWelcomeEmail(email: string) {
   const { error } = await resend.emails.send({
-    from: "짱샘의 치유책방 <onboarding@resend.dev>",
+    from: "짱샘의 치유책방 <hello@jjangsaem.com>",
     to: email,
     subject: "짱샘의 치유책방 뉴스레터 구독을 환영합니다!",
     html: `
@@ -81,7 +81,7 @@ export async function sendNewBookEmail(email: string, book: Ebook) {
   const hasDiscount = book.originalPrice && book.originalPrice > book.price;
 
   const { error } = await resend.emails.send({
-    from: "짱샘의 치유책방 <onboarding@resend.dev>",
+    from: "짱샘의 치유책방 <hello@jjangsaem.com>",
     to: email,
     subject: `[신간 안내] ${book.title} — 짱샘의 치유책방`,
     html: `
