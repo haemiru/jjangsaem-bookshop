@@ -10,6 +10,7 @@ export default function CtaBanner() {
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-base text-white/80">
           후각 훈련과 감각 기반 치유, 어디서부터 시작해야 할지 막막하셨나요?
+          <br />
           짱샘의 전자책이 첫걸음을 도와드립니다.
         </p>
         <Link
