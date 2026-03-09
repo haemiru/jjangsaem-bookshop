@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: "/api/",
     },
-    sitemap: "https://jjangsaem.vercel.app/sitemap.xml",
+    sitemap: "https://jjangsaem.com/sitemap.xml",
   };
 }

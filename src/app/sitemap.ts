@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllSlugs } from "@/data/ebooks";
 import { blogPosts } from "@/data/blogPosts";
 
-const SITE_URL = "https://jjangsaem.vercel.app";
+const SITE_URL = "https://jjangsaem.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const ebookPages = getAllSlugs().map((slug) => ({

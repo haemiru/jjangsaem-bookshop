@@ -1,7 +1,7 @@
 import { Ebook } from "@/types/ebook";
 import { BlogPost } from "@/types/blog";
 
-const SITE_URL = "https://jjangsaem.vercel.app";
+const SITE_URL = "https://jjangsaem.com";
 
 export function generateWebsiteSchema() {
   return {
