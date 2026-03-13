@@ -55,48 +55,23 @@ export default function PurchaseCard({ ebook }: PurchaseCardProps) {
     setPaymentLoading(true);
     setError("");
     try {
-      const isTestMode = process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY?.trim() === "test_mode";
+      const { loadTossPayments } = await import("@tosspayments/tosspayments-sdk");
+      const { v4: uuidv4 } = await import("uuid");
+      const tossPayments = await loadTossPayments(
+        process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY!
+      );
+      const payment = tossPayments.payment({ customerKey: user.id });
+      const orderId = uuidv4();
 
-      if (isTestMode) {
-        // 테스트 모드: Toss 결제창 없이 바로 구매 처리
-        const res = await fetch("/api/payment/confirm", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            paymentKey: `test_${Date.now()}`,
-            orderId: `test_order_${Date.now()}`,
-            amount: ebook.price,
-            slug: ebook.slug,
-          }),
-        });
-
-        if (res.ok) {
-          setPurchased(true);
-          router.push("/my-library");
-        } else {
-          const data = await res.json();
-          setError(data.error || "구매 처리에 실패했습니다.");
-        }
-      } else {
-        // 실제 결제: Toss Payments V2 SDK
-        const { loadTossPayments } = await import("@tosspayments/tosspayments-sdk");
-        const { v4: uuidv4 } = await import("uuid");
-        const tossPayments = await loadTossPayments(
-          process.env.NEXT_PUBLIC_TOSS_CLIENT_KEY!
-        );
-        const payment = tossPayments.payment({ customerKey: user.id });
-        const orderId = uuidv4();
-
-        await payment.requestPayment({
-          method: "CARD",
-          amount: { currency: "KRW", value: ebook.price },
-          orderId,
-          orderName: ebook.title,
-          customerEmail: user.email ?? undefined,
-          successUrl: `${window.location.origin}/payment/success?slug=${ebook.slug}`,
-          failUrl: `${window.location.origin}/payment/fail`,
-        });
-      }
+      await payment.requestPayment({
+        method: "CARD",
+        amount: { currency: "KRW", value: ebook.price },
+        orderId,
+        orderName: ebook.title,
+        customerEmail: user.email ?? undefined,
+        successUrl: `${window.location.origin}/payment/success?slug=${ebook.slug}`,
+        failUrl: `${window.location.origin}/payment/fail`,
+      });
     } catch (err: unknown) {
       const message =
         err instanceof Error ? err.message : "결제 처리 중 오류가 발생했습니다.";
