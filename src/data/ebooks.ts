@@ -8,7 +8,7 @@ export const ebooks: Ebook[] = [
     author: "피지오 아카데미",
     description:
       "발달지연 아동 부모를 위한 내면 치유 가이드. 죄책감, 번아웃, 부부 갈등 등 양육 과정에서 겪는 심리적 어려움을 따뜻하게 다루며, 부모 스스로를 돌보는 실천법을 제시합니다.",
-    price: 5500,
+    price: 100,
     originalPrice: 9900,
     category: "치유",
     colorKey: "book-healing",
